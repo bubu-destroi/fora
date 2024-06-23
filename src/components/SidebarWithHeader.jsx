@@ -26,6 +26,8 @@ import {
 import{Routes, Route, Link} from 'react-router-dom'
 
 
+
+
 import foraLogo from '../assets/FORA LOGO.png'
 import perfilLogo from '../assets/perfil logo.png'
 import Projects from './Projects'
@@ -215,7 +217,7 @@ const SidebarWithHeader = () => {
       <Route path='/events/:filter' element={<Projects  />} ></Route>
       <Route path='/allevents' element={<AllProjects  />} ></Route>
       <Route path='/events/new' element={<AddProject  />} ></Route>
-      <Route path='events/:id' element={<ProjectDetails  />} ></Route>
+      <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
 
       </Routes>
 

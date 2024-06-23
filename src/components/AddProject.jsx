@@ -65,13 +65,13 @@ const AddProject = () => {
 
    useEffect(()=>{
         
-      }, [title, description, picture, date, social])
+      }, [title, description, picture, date, where, social])
  
 
   return (
     <div className='addEvent' >
     <div>
-    <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>CREATE YOUR EVENT</Text>
+    <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>CREATE YOUR EVENT</Text>
 
     <form onSubmit={handleSubmit} > 
 
@@ -171,9 +171,9 @@ const AddProject = () => {
 
 <div>
 
-    <Card maxW='sm'>
+    <Card maxW='sm' variant = 'outline'>
   <CardBody>
-  <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
+  <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
     <Image
       src={picture}
       borderRadius='lg'

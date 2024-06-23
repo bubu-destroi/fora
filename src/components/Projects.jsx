@@ -2,7 +2,8 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios  from "axios"
 import {  useParams } from 'react-router-dom'
-import EventCard from './EventCard'
+import {  SimpleGrid} from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button } from '@chakra-ui/react'
 
 
 const Projects  = () =>{
@@ -57,23 +58,82 @@ const Projects  = () =>{
 
     useEffect(()=>{
         console.log('mounting')
-        getEvents()
+        getEvents(filter)
     }, [filter])
    
     return(
-        <div>
-            <h1>{filter}</h1>
+        <div className="filteredEvents">
+            <h1>{filter.title}</h1>
 
-            <Link to= '/events/new'>
+            {/* <Link to= '/events/new'>
 
             <button>Add a new event</button>
 
-            </Link>
+            </Link> */}
 
 
             {filteredEvents.map(event => {
-                return( <EventCard key={event.id} event={event} />
+                return( 
+                    <>
+                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
+
+                    <Card maxW='lg' >
+                        <CardBody>
+                            <Image
+                            src={event.picture}
+                            display={'responsive'}
+                            borderRadius='lg'
+                            justifyContent={'center'}
+                            margin={'0'}
+                            
+                            />
+                            <Stack mt='6' spacing='3'>
+                            <Heading color='tomato' size='lg'>{event.title}</Heading>
+                            <Text>
+                                {event.description}
+                            </Text>
+                            <Text>
+                                {event.social}
+                            </Text>
+                            <Text color='tomato' fontSize='2xl'>
+                                {event.date}
+                            </Text>
+                            <Text color='tomato' fontSize='2xl'>
+                                {event.where}
+                            </Text>
+                            </Stack>
+                        </CardBody>
+                        <Divider />
+
+                        <CardFooter
+                            justify='space-between'
+                            flexWrap='wrap'
+                            sx={{
+                            '& > button': {
+                                minW: '136px',
+                            },
+                            }}
+                        >
+                            <Button flex='1' variant='ghost' >
+                            save event
+                            </Button>
+
+                            <Link to={`/events/${event.id}`} >
+                                    
+                            <Button flex='1' variant='ghost'>
+                            see details
+                            </Button>
+
+                            </Link>
+                        </CardFooter>
+                    </Card>
+
+                       
+            </SimpleGrid>
+</>
+                        
                 )
+                
             })}
             {/* {filteredEvents.map(event => {
                 return(

@@ -2,15 +2,19 @@ import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Butto
 import { Link } from 'react-router-dom'
 
 
+
 const EventCard = ({event}) => {
     return (
 
 <Card maxW='sm'>
   <CardBody>
+ 
     <Image
       src={event.picture}
       borderRadius='lg'
+      margin={'0'}
     />
+
     <Stack mt='6' spacing='3'>
       <Heading color='tomato' size='md'>{event.title}</Heading>
       <Text>
