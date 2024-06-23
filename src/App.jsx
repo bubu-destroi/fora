@@ -1,8 +1,10 @@
 
 import './App.css'
-import { useContext } from 'react'
-import { ThemeContext } from './context/Theme.context'
+
 import SidebarWithHeader from './components/SidebarWithHeader'
+import theme from '../src/components/theme'
+import { ChakraProvider } from '@chakra-ui/react';
+
 /* import foraLogo from '../src/assets/FORA LOGO.png' */
 
 
@@ -11,7 +13,7 @@ import SidebarWithHeader from './components/SidebarWithHeader'
 
 function App()  {
 
-  const {theme} = useContext(ThemeContext)
+
 
 
   return (
@@ -21,8 +23,9 @@ function App()  {
    
    {/* <img src={foraLogo} alt="" />
  */}
-
+ <ChakraProvider theme={theme}>
    <SidebarWithHeader />
+   </ChakraProvider>
    {/* <Routes>
     <Route path = '/' element={<Homepage/>} />
     <Route path='/about' element={<About/>} ></Route>

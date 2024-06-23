@@ -1,10 +1,11 @@
 import  { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Input } from '@chakra-ui/react'
+import { Input, SimpleGrid, Box, AbsoluteCenter
+ } from '@chakra-ui/react'
 
 
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup, Center } from '@chakra-ui/react'
 
 
 const AddProject = () => {
@@ -69,23 +70,18 @@ const AddProject = () => {
  
 
   return (
-    <div className='addEvent' >
-    <div>
-    <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>CREATE YOUR EVENT</Text>
+    
+    
+    <Center display={'flex'} h={'60vh'} >
+    <Box position='relative'>
+  <AbsoluteCenter axis='both'>
+    <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
+   
 
     <form onSubmit={handleSubmit} > 
+    <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>CREATE YOUR EVENT</Text>
 
-   
-        
-   {/*  <label htmlFor="">title</label>
-    <input type="text" name='title' value={title} onChange={handleTitle} />
-    <br/>
-    
-
-    <label htmlFor="">description</label>
-    <textarea itemType="text" name='description' value={description} onChange={handleDescriprion}></textarea>
-    <br/> */}
-
+  
     <Input
     color='tomato'
     placeholder='event title'
@@ -100,9 +96,6 @@ const AddProject = () => {
 
     <br/>
 
-   {/*  <label htmlFor="">picture url</label>
-    <input type="text" name='picture' value={picture} onChange={handlePicture} />
-     */}
     <Input
     color='tomato'
     placeholder='picture url'
@@ -110,10 +103,6 @@ const AddProject = () => {
 
     <br/>
 
-
-   {/*  <label htmlFor="">when</label>
-    <input type="date" name='date' value={date} onChange={handleDate} />
-    <br/> */}
 
     <Input color='tomato'
     placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate}  />
@@ -126,13 +115,7 @@ const AddProject = () => {
 
     <br/>
 
-    {/* <label htmlFor="">where</label>
-    <input type="text" name='where' value={where} onChange={handleWhere} />
-    <br/> */}
 
-    {/* <label htmlFor="">link to social media</label>
-    <input type="url" name='social_media' value={social} onChange={handleSocial}/>
-    <br/> */}
 
     <Input
     color='tomato'
@@ -141,20 +124,13 @@ const AddProject = () => {
 
     <br/>
 
-   {/*  <label htmlFor="">secret key for edit/delete</label>
-    <input type="text" name='secret_key' value={secret_key} onChange={handleSecret_key} />
-    <br/>
- */}
     <Input
     color='tomato'
     placeholder='secret key (for later edit)'
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={secret_key} onChange={handleSecret_key} />
 
     <br/>
-
-    {/* <button type='submit'>add event</button> */}
-
-    <Button
+   <Button
     type='submit'
   size='md'
   height='48px'
@@ -166,42 +142,47 @@ const AddProject = () => {
  add event
 </Button>
 </form>
-
-    </div>
-
 <div>
 
     <Card maxW='sm' variant = 'outline'>
-  <CardBody>
-  <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
-    <Image
-      src={picture}
-      borderRadius='lg'
-    />
-    <Stack mt='6' spacing='3'>
-      <Heading size='md'>{title}</Heading>
-      <Text>
-        {description}
-      </Text>
-      <Text>
-        {social}
-      </Text>
-      <Text color='black' fontSize='2xl'>
-        {date}
-      </Text>
-      <Text color='black' fontSize='2xl'>
-        {where}
-      </Text>
-    </Stack>
-  </CardBody>
-  <Divider />
-  <CardFooter>
-    <ButtonGroup spacing='2'>
-   
-    </ButtonGroup>
-  </CardFooter>
-</Card>
-</div>
+      <CardBody>
+        <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
+          <Box display="flex" justifyContent="center" alignItems="center">
+              <Image
+                  src={picture}
+                  borderRadius='lg'
+                  margin={'0'}
+                  />
+          </Box>
+          <Stack mt='6' spacing='3'>
+            <Heading size='md'>{title}</Heading>
+            <Text>
+              {description}
+            </Text>
+            <Text>
+              {social}
+            </Text>
+            <Text color='black' fontSize='2xl'>
+              {date}
+            </Text>
+            <Text color='black' fontSize='2xl'>
+              {where}
+            </Text>
+          </Stack>
+      </CardBody>
+    <Divider />
+      <CardFooter>
+        <ButtonGroup spacing='2'>
+      
+        </ButtonGroup>
+      </CardFooter>
+    </Card>
+  </div>
+
+  </SimpleGrid>
+  </AbsoluteCenter>
+</Box>
+  </Center>
 
 
 
@@ -209,7 +190,7 @@ const AddProject = () => {
       
 
 
-    </div>
+
   )
 }
 

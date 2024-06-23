@@ -30,6 +30,9 @@ import{Routes, Route, Link} from 'react-router-dom'
 
 
 
+
+
+
 import foraLogo from '../assets/FORA LOGO.png'
 import perfilLogo from '../assets/perfil logo.png'
 import Projects from './Projects'
@@ -55,12 +58,12 @@ const SidebarContent = ({ onClose, ...rest }) => {
       bg={useColorModeValue('white')}
       borderRight="1px"
       borderRightColor={useColorModeValue('white')}
-      w={{ base: 'full', md: 30 }}
+      w={{ base: 'full', md: 60 }}
       pos="fixed"
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
+        <Text fontSize="2xl" fontFamily='"Tiny5", sans-serif' fontWeight="bold">
           WHAT IS HAPPENING?
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
@@ -129,18 +132,12 @@ const MobileNav = ({ onOpen, ...rest }) => {
       <Box display="flex" justifyContent="center" flex="1" >
         <Image
           src={foraLogo}
-          width={''}
-          height={'200px'}
+          width={'auto'}
+          height={'auto'}
+
         />
       </Box>
- {/*      <Text
-        display={{ base: 'flex', md: 'none' }}
-        fontSize="2xl"
-        fontFamily="monospace"
-        fontWeight="bold"> 
 
-      </Text>
- */}
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <Menu>
@@ -150,21 +147,18 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   size={'lg'}
                   src={perfilLogo} 
                 borderRadius={'0px'}
-                width = {'50px'}
+                width = {'70px'}
                 left = {'-10px'}
-
-            
-                //objectFit={'fill'}
                 />
                 <VStack
                   display={{ base: 'none', md: 'flex' }}
-                  alignItems="flex-start"
+                  alignItems="center"
                   spacing="1px"
                   ml="2">
                   <Text fontSize="sm">username</Text>
-                  <Text fontSize="xs" color="gray.600">
+                 {/*  <Text fontSize="s" color="gray.600">
                     menu
-                  </Text>
+                  </Text> */}
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
                   <FiChevronDown />
@@ -212,7 +206,13 @@ const SidebarWithHeader = () => {
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
       
-      <Box ml={{ base: 0, md: 60 }} pt={{ base: '60px', md: '200px' }} p="4" pb="4" mt={{ base: '200px', md: '0' }}>
+      <Box  ml={{ base: 0, md: 60 }}
+        pt={{ base: '60px', md: '200px' }}
+        p="4"
+        pb="4"
+        mt={{ base: '200px', md: '0' }}
+        display="flex"
+        justifyContent="center">
 
           <Routes>
           <Route path='/events/:filter' element={<Projects  />} ></Route>

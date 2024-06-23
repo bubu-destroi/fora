@@ -63,15 +63,26 @@ const Projects  = () =>{
    
     return(
         <div className="filteredEvents">
-            <h1>{filter.title}</h1>
+
+            <Heading pt={'10px'} pb={'10px'} color='tomato' size='4xl'>{filter}</Heading>
+            <Link to={`/events/new`} >
+                                                
+                <Button flex='1' variant='ghost' >
+                     <Text color='tomato' fontSize='2xl'>ADD A NEW EVENT</Text>
+                 </Button>
+                       
+             </Link>
+ 
+           
 
             {/* <Link to= '/events/new'>
 
             <button>Add a new event</button>
 
+
             </Link> */}
 
-
+            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
             {filteredEvents.map(event => {
                 return( 
                     <>
@@ -129,11 +140,13 @@ const Projects  = () =>{
 
                        
             </SimpleGrid>
+
 </>
                         
                 )
                 
             })}
+            </SimpleGrid>
             {/* {filteredEvents.map(event => {
                 return(
                     <div key={event.id} >
