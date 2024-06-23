@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 import EventCard from './EventCard'
-import {Divider, ButtonGroup,Stack, Card, CardHeader, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
+import {Divider, Box,  ButtonGroup,Stack, Card, CardHeader, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
 
 
 const AllProjects  = () =>{
@@ -55,29 +55,33 @@ const AllProjects  = () =>{
    
     return(
         <div>
-            <h1>all events</h1>
+                    <Heading color='tomato' size='4xl'>ALL EVENTS</Heading>
+ 
+        <Link to={`/events/new`} >
+                                    
+             <Button flex='1' variant='ghost' >
+                <Text color='tomato' fontSize='2xl'>ADD A NEW EVENT</Text>
+             </Button>
 
-            <Link to= '/events/new'>
+        </Link>
 
-            <button>add a new event</button>
-
-            </Link>
-
-            <SimpleGrid spacing={4} templateColumns='repeat(auto-fill, minmax(200px, 1fr))'>
+            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
+           
+           
             {events.map(event => {return( 
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
                     <Card maxW='lg' >
                         <CardBody>
+                        <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
-                            src={event.picture}
-                            display={'responsive'}
-                            borderRadius='lg'
-                            justifyContent={'center'}
-                            margin={'0'}
-                            
+                                src={event.picture}
+                                borderRadius='lg'
+                                margin={'0'}
                             />
+                            </Box>
+                            
                             <Stack mt='6' spacing='3'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
                             <Text>

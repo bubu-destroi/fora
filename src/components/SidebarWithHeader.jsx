@@ -16,12 +16,14 @@ import {
   MenuItem,
   MenuList,
   Image,
+
 } from '@chakra-ui/react'
 import {
  /*  FiStar,
   FiSettings, */
   FiMenu,
   FiChevronDown,
+
 } from 'react-icons/fi'
 import{Routes, Route, Link} from 'react-router-dom'
 
@@ -39,11 +41,9 @@ import ProjectDetails from './ProjectDetails'
 const LinkItems = [
   
   { name: 'TODAY', to: '/events/today' },
+  { name: 'ALL EVENTS', to: '/allevents' },
   { name: 'WHEN', to: '/events/when' },
-  { name: 'WHERE',to: '/events/where' },/* 
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
-] */]
+  { name: 'WHERE',to: '/events/where' }]
 
 
 
@@ -95,17 +95,7 @@ const NavItem = ({  children, href, ...rest}) => {
           color: 'red',
         }}
         {...rest}>
-       {/*  {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )} */}
-        
+      
         {children}
       </Flex>
       
@@ -114,17 +104,21 @@ const NavItem = ({  children, href, ...rest}) => {
 }
 
 const MobileNav = ({ onOpen, ...rest }) => {
-  return (
+  return (<>
+    
     <Flex
+      position="fixed"
+      top="0"
+      left="0"
+      right="0"
       ml={{ base: 0, md: 60 }}
-      px={{ base: 8, md: 20 }}
-      height="40"
+      px={{ base: 4, md: 4 }}
+      height="-60px"
       alignItems="center"
-      bg={useColorModeValue('white')}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('white')}
-      justifyContent={{ base: 'space-between', md: 'flex-end' }}
-      {...rest}>
+      justifyContent={{ base: 'space-between', md: 'space-between' }}
+      zIndex="1100" 
+      {...rest}
+    >
       <IconButton
         display={{ base: 'flex', md: 'none' }}
         onClick={onOpen}
@@ -132,19 +126,24 @@ const MobileNav = ({ onOpen, ...rest }) => {
         aria-label="open menu"
         icon={<FiMenu />}
       />
-
-      <Text
+      <Box display="flex" justifyContent="center" flex="1" >
+        <Image
+          src={foraLogo}
+          width={''}
+          height={'200px'}
+        />
+      </Box>
+ {/*      <Text
         display={{ base: 'flex', md: 'none' }}
         fontSize="2xl"
         fontFamily="monospace"
-        fontWeight="bold">
-        {/* <img src={foraLogo} alt="" /> fica ao lado do botao do meu e ante do icon de perfil no modo tlm */}
-      </Text>
+        fontWeight="bold"> 
 
+      </Text>
+ */}
       <HStack spacing={{ base: '0', md: '6' }}>
         <Flex alignItems={'center'}>
           <Menu>
-        <img src={foraLogo} alt="" width={'80%'} />
             <MenuButton py={2} transition="all 0.3s" _focus={{ boxShadow: 'none' }} >
               <HStack>
                 <Image
@@ -189,6 +188,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         </Flex>
       </HStack>
     </Flex>
+    </>
   )
 }
 
@@ -211,19 +211,21 @@ const SidebarWithHeader = () => {
       </Drawer>
       {/* mobilenav */}
       <MobileNav onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      
+      <Box ml={{ base: 0, md: 60 }} pt={{ base: '60px', md: '200px' }} p="4" pb="4" mt={{ base: '200px', md: '0' }}>
 
-      <Routes>
-      <Route path='/events/:filter' element={<Projects  />} ></Route>
-      <Route path='/allevents' element={<AllProjects  />} ></Route>
-      <Route path='/events/new' element={<AddProject  />} ></Route>
-      <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
+          <Routes>
+          <Route path='/events/:filter' element={<Projects  />} ></Route>
+          <Route path='/allevents' element={<AllProjects  />} ></Route>
+          <Route path='/events/new' element={<AddProject  />} ></Route>
+          <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
 
-      </Routes>
+          </Routes>
 
         {/* Content */}
       </Box>
     </Box>
+  
   )
 }
 

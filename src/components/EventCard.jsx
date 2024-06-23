@@ -1,4 +1,4 @@
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, Box } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 
@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom'
 const EventCard = ({event}) => {
     return (
 
-<Card maxW='sm'>
-  <CardBody>
- 
-    <Image
-      src={event.picture}
-      borderRadius='lg'
-      margin={'0'}
-    />
-
+      <Card maxW='lg' >
+      <CardBody>
+      <Box display="flex" justifyContent="center" alignItems="center">
+          <Image
+              src={event.picture}
+              borderRadius='lg'
+              margin={'0'}
+          />
+          </Box>
     <Stack mt='6' spacing='3'>
       <Heading color='tomato' size='md'>{event.title}</Heading>
       <Text>
@@ -91,6 +91,6 @@ const EventCard = ({event}) => {
   </CardFooter>
 </Card>
     )
-}
+} 
 
 export default EventCard

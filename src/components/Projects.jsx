@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios  from "axios"
 import {  useParams } from 'react-router-dom'
 import {  SimpleGrid} from '@chakra-ui/react'
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button } from '@chakra-ui/react'
+import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button } from '@chakra-ui/react'
 
 
 const Projects  = () =>{
@@ -79,14 +79,13 @@ const Projects  = () =>{
 
                     <Card maxW='lg' >
                         <CardBody>
+                        <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
-                            src={event.picture}
-                            display={'responsive'}
-                            borderRadius='lg'
-                            justifyContent={'center'}
-                            margin={'0'}
-                            
+                                src={event.picture}
+                                borderRadius='lg'
+                                margin={'0'}
                             />
+                            </Box>
                             <Stack mt='6' spacing='3'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
                             <Text>
