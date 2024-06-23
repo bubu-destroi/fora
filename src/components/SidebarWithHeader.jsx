@@ -63,13 +63,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily='"Tiny5", sans-serif' fontWeight="bold">
+        <Text fontSize="4xl" fontFamily='"Tiny5", sans-serif' fontWeight="bold">
           WHAT IS HAPPENING?
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
          {LinkItems.map((link) => (
-        <NavItem key={link.name} href={link.to}>
+        <NavItem fontSize="2xl" key={link.name} href={link.to}>
           {link.name}
         </NavItem>
 
@@ -130,12 +130,13 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
       <Box display="flex" justifyContent="center" flex="1" >
+        <Link to='/allevents' >
         <Image
           src={foraLogo}
           width={'auto'}
           height={'auto'}
-
         />
+        </Link>
       </Box>
 
       <HStack spacing={{ base: '0', md: '6' }}>
@@ -155,10 +156,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   alignItems="center"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="sm">username</Text>
-                 {/*  <Text fontSize="s" color="gray.600">
-                    menu
-                  </Text> */}
+                  <Text fontSize="3xl">username</Text>
+                
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
                   <FiChevronDown />
@@ -166,6 +165,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
               </HStack>
             </MenuButton>
             <MenuList
+            fontSize="xl"
               bg={useColorModeValue('white')}
               borderColor={useColorModeValue('white')}>
               <MenuItem  >your profile</MenuItem>
@@ -215,6 +215,7 @@ const SidebarWithHeader = () => {
         justifyContent="center">
 
           <Routes>
+          <Route path='/' element={<AllProjects  />} ></Route>
           <Route path='/events/:filter' element={<Projects  />} ></Route>
           <Route path='/allevents' element={<AllProjects  />} ></Route>
           <Route path='/events/new' element={<AddProject  />} ></Route>

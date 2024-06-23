@@ -1,17 +1,17 @@
 
-import {  useParams } from 'react-router-dom'
+import {  useParams, Link,  Link as RouterLink } from 'react-router-dom'
+import { Card, CardBody,Image, Stack, Heading, } from '@chakra-ui/react'
 //import { Link } from 'react-router-dom'
-import { useEffect, useState , Link} from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
-import EventCard from './EventCard'
-import { Text , Button} from '@chakra-ui/react'
+//import EventCard from './EventCard'
+import { Text , Button,Center,Box, Divider, CardFooter} from '@chakra-ui/react'
 
 function ProjectDetails() {
 
-  const [singleEvent, setSingleEvent] = useState(null)
+  const [singleEvent, setSingleEvent] = useState(null);
 
-
-    const {eventId} = useParams() //syntax para apanhar a variável q eu criei no Route  /:projectId
+    const {eventId} = useParams(); //syntax para apanhar a variável q eu criei no Route  /:projectId
     console.log(eventId)
    /* 
     //find returns the first element matching the condition
@@ -25,7 +25,6 @@ function ProjectDetails() {
       setSingleEvent(response.data)
     } catch (error) {
       console.log('error', error)
-      
     }
   }
 
@@ -36,28 +35,72 @@ function ProjectDetails() {
 
 
     return (
-    <div key={eventId} >
+      <>
 
-
-    {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
+      <Center height="110vh" flexDirection="column">
+        <Box width={'100%'}>
+        {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
     
-    {singleEvent &&  (
-      <EventCard event={singleEvent} />
-    )}
-         
-
+        {singleEvent &&  ( 
           
-    <Button flex='1' variant='ghost' >
-          <Text>
-            <Link to='/allevents'> 
-              BACK TO EVENTS
-            </Link> 
-          </Text>
-    
-    </Button>
+                      <Card maxW='lg' >
+                        <CardBody>
+                        <Box display="flex" justifyContent="center" alignItems="center">
+                            <Image
+                                src={singleEvent.picture}
+                                borderRadius='lg'
+                                margin={'0'}
+                            />
+                            </Box>
+                            <Stack mt='6' spacing='3'>
+                            <Heading color='tomato' size='lg'>{singleEvent.title}</Heading>
+                            <Text>
+                                {singleEvent.description}
+                            </Text>
+                            <Text>
+                                {singleEvent.social}
+                            </Text>
+                            <Text color='tomato' fontSize='2xl'>
+                                {singleEvent.date}
+                            </Text>
+                            <Text color='tomato' fontSize='2xl'>
+                                {singleEvent.where}
+                            </Text>
+                            </Stack>
+                        </CardBody>
+                        <Divider />
+                        <Center>
+                        <CardFooter
+                            justify='space-between'
+                            flexWrap='wrap'
+                            sx={{'& > button': {
+                                minW: '136px',},}} >
+                                
+                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                save <embed src="" type="" />vent
+                                </Button>
 
-        </div>
-      )
+                            <Link to={`/events/${singleEvent.id}`} >
+                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                see details
+                                </Button>
+                            </Link>
+
+                        </CardFooter>
+                        </Center>
+                    </Card>
+)}
+         </Box>
+    
+          <Button mt={4}>
+            <RouterLink to="/allevents">
+              BACK TO EVENTS
+            </RouterLink>
+          </Button>
+      </Center>
+
+        </> 
+        )
       }
 
     

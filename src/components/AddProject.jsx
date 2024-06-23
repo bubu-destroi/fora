@@ -74,8 +74,8 @@ const AddProject = () => {
     
     <Center display={'flex'} h={'60vh'} >
     <Box position='relative'>
-  <AbsoluteCenter axis='both'>
-    <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
+    <AbsoluteCenter axis='both'>
+    <SimpleGrid  spacing={6} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
    
 
     <form onSubmit={handleSubmit} > 
@@ -142,41 +142,42 @@ const AddProject = () => {
  add event
 </Button>
 </form>
-<div>
+<div  >
 
-    <Card maxW='sm' variant = 'outline'>
-      <CardBody>
-        <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
-          <Box display="flex" justifyContent="center" alignItems="center">
-              <Image
-                  src={picture}
-                  borderRadius='lg'
-                  margin={'0'}
-                  />
-          </Box>
-          <Stack mt='6' spacing='3'>
-            <Heading size='md'>{title}</Heading>
-            <Text>
-              {description}
-            </Text>
-            <Text>
-              {social}
-            </Text>
-            <Text color='black' fontSize='2xl'>
-              {date}
-            </Text>
-            <Text color='black' fontSize='2xl'>
-              {where}
-            </Text>
-          </Stack>
-      </CardBody>
-    <Divider />
-      <CardFooter>
-        <ButtonGroup spacing='2'>
-      
-        </ButtonGroup>
-      </CardFooter>
+    <Card width="160%" maxW='md' variant = 'outline'>
+    <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
+        <CardBody>
+            <Box display="flex" justifyContent="center" alignItems="center">
+                <Image
+                    src={picture}
+                    borderRadius='lg'
+                    margin={'0'}
+                    />
+            </Box>
+            <Stack mt='6' spacing='3'>
+              <Heading size='md'>{title}</Heading>
+              <Text>
+                {description}
+              </Text>
+              <Text>
+                {social}
+              </Text>
+              <Text color='black' fontSize='2xl'>
+                {date}
+              </Text>
+              <Text color='black' fontSize='2xl'>
+                {where}
+              </Text>
+            </Stack>
+        </CardBody>
+      <Divider />
+        <CardFooter>
+          <ButtonGroup spacing='2'>
+        
+          </ButtonGroup>
+        </CardFooter>
     </Card>
+
   </div>
 
   </SimpleGrid>

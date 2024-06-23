@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios  from "axios"
 import {  useParams } from 'react-router-dom'
 import {  SimpleGrid} from '@chakra-ui/react'
-import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button } from '@chakra-ui/react'
+import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, Center } from '@chakra-ui/react'
 
 
 const Projects  = () =>{
@@ -12,24 +12,7 @@ const Projects  = () =>{
     const [filteredEvents, setFilteredEvents] = useState([])
     const {filter} = useParams()
 
-    const getEvents = async () =>{
-        try{
-            const response = await axios.get('http://localhost:5005/events')
-            // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
-            console.log(response.data)
-            setEvents(response.data)
-
-            if(filter==='today') {
-                filterToday(response.data)
-            } else {
-                setFilteredEvents(events)
-            }
-
-
-        }catch (error) {
-            console.log('error fetching the events', error)
-        }
-    }
+    
 
     const filterToday = events => {
 
@@ -58,6 +41,24 @@ const Projects  = () =>{
 
     useEffect(()=>{
         console.log('mounting')
+        const getEvents = async () =>{
+            try{
+                const response = await axios.get('http://localhost:5005/events')
+                // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
+                console.log(response.data)
+                setEvents(response.data)
+    
+                if(filter==='today') {
+                    filterToday(response.data)
+                } else {
+                    setFilteredEvents(events)
+                }
+    
+    
+            }catch (error) {
+                console.log('error fetching the events', error)
+            }
+        }
         getEvents(filter)
     }, [filter])
    
@@ -114,51 +115,31 @@ const Projects  = () =>{
                             </Stack>
                         </CardBody>
                         <Divider />
-
+                        <Center>
                         <CardFooter
                             justify='space-between'
                             flexWrap='wrap'
-                            sx={{
-                            '& > button': {
-                                minW: '136px',
-                            },
-                            }}
-                        >
-                            <Button flex='1' variant='ghost' >
-                            save event
-                            </Button>
+                            sx={{'& > button': {
+                                minW: '136px',},}} >
 
-                            <Link to={`/events/${event.id}`} >
-                                    
-                            <Button flex='1' variant='ghost'>
-                            see details
-                            </Button>
+                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                save event
+                                </Button>
 
+                            <Link to={`/allevents/${event.id}`} >
+                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                see details
+                                </Button>
                             </Link>
+
                         </CardFooter>
+                        </Center>
                     </Card>
 
-                       
             </SimpleGrid>
 
-</>
-                        
-                )
-                
-            })}
+                </>)  })}
             </SimpleGrid>
-            {/* {filteredEvents.map(event => {
-                return(
-                    <div key={event.id} >
-                    <Link to={`/events/${event.id}`} >
-                        <h2>{event.title}</h2>
-
-                    </Link>
-
-                        <p>{event.description}</p>
-                    </div>
-                )
-            })} */}
         </div>
     )
 } 
