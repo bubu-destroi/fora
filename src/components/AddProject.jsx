@@ -1,8 +1,7 @@
-import  { useEffect, useState, InputRightElement } from 'react'
+import  { useEffect, useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Input, SimpleGrid, Box, AbsoluteCenter, InputGroup
- } from '@chakra-ui/react'
+import { Input, SimpleGrid, Box, AbsoluteCenter} from '@chakra-ui/react'
 
 
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup, Center } from '@chakra-ui/react'
@@ -16,9 +15,10 @@ const AddProject = () => {
     const [date, setDate] = useState('')
     const [where, setWhere] = useState('')
     const [social, setSocial] = useState('https://')
+    const [user, setUser] = useState('theme context here')
+    const [genre, setGenre] = useState('')
     const [secret_key, setSecret_key] = useState('')
-    const [show, setShow] = useState(false)
-    const handleClick = () => setShow(!show)
+    
     const navigate = useNavigate()
 
     const handleTitle = (event) =>{
@@ -44,6 +44,14 @@ const AddProject = () => {
         setWhere(event.target.value)
     }
 
+    const handleByUser = (event) => {
+      setUser(event.target.value)
+    }
+   
+    const handleGenre = (event) => {
+        setGenre(event.target.value)
+    }
+    
     const handleSecret_key = (event) => {
         setSecret_key(event.target.value)
     }
@@ -68,7 +76,7 @@ const AddProject = () => {
 
    useEffect(()=>{
         
-      }, [title, description, picture, date, where, social])
+      }, [title, description, genre, picture, date, where, social, user])
  
 
   return (
@@ -80,7 +88,7 @@ const AddProject = () => {
     <SimpleGrid  spacing={6} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
    
 
-    <form onSubmit={handleSubmit} > 
+    <form onSubmit={[handleSubmit, handleByUser]}  > 
     <Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>CREATE YOUR EVENT</Text>
 
   
@@ -95,6 +103,14 @@ const AddProject = () => {
     color='tomato'
     placeholder='event description'
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={description} onChange={handleDescriprion} />
+
+    <br/>
+
+    <Input
+    type='text'
+    color='tomato'
+    placeholder='genre'
+    _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={genre} onChange={handleGenre} />
 
     <br/>
 
@@ -118,7 +134,13 @@ const AddProject = () => {
     <br/>
 
 
+    <Input
+    color='tomato'
+    placeholder='author name'
+    _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={user} onChange={handleByUser} />
 
+    <br />
+    
     <Input
     type='url'
     color='tomato'
@@ -127,10 +149,6 @@ const AddProject = () => {
 
     <br/>
     
-  
-
- 
- 
    
     <Input
     color='tomato' 
@@ -162,7 +180,7 @@ const AddProject = () => {
             <Box display="flex" justifyContent="center" alignItems="center">
                 <Image
                     src={picture}
-                    borderRadius='lg'
+                    borderRadius='none'
                     margin={'0'}
                     />
             </Box>
@@ -191,7 +209,7 @@ const AddProject = () => {
     </Card>
 
   </div>
-
+  
   </SimpleGrid>
   </AbsoluteCenter>
 </Box>

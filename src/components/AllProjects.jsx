@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
-import {Divider, Box,  ButtonGroup ,Stack, Card, CardHeader, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
+import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
 
 
 const AllProjects  = () =>{

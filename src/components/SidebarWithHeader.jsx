@@ -40,6 +40,8 @@ import Projects from './Projects'
 import AllProjects from './AllProjects'
 import AddProject from './AddProject'
 import ProjectDetails from './ProjectDetails'
+import Teapot from '../pages/Teapot'
+import EditProject from './EditProject'
 
 
 const LinkItems =  [
@@ -48,8 +50,8 @@ const LinkItems =  [
   
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/allevents' },
-  { name: 'WHEN', to:'/events/when', type: 'date' },
-  { name: 'PLACE' } ]
+  { name: 'PLACE' },
+  { name: 'WHEN', to:'/events/when', type: 'date' } ]
 
 
 
@@ -78,7 +80,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="4xl" fontFamily='"Tiny5", sans-serif' fontWeight="bold">
+        <Text fontSize="4xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
           WHAT IS HAPPENING?
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
@@ -260,6 +262,8 @@ const SidebarWithHeader = () => {
           <Route path='/allevents' element={<AllProjects  />} ></Route>
           <Route path='/events/new' element={<AddProject  />} ></Route>
           <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
+          <Route path='/events/:eventId/editproject' element={<EditProject />} ></Route>
+          <Route path='*' element={<Teapot  />} ></Route>
 
           </Routes>
 

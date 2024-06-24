@@ -97,13 +97,18 @@ function ProjectDetails() {
                                 
                                 <Button fontSize='2xl' flex='1' variant='ghost' >
                                 save event
-                      
                                 </Button>
                                
 
                             <Link to={`/allevents/${singleEvent.id}`} >
                                 <Button fontSize='2xl' flex='1' variant='ghost'>
-                                more events by -user-
+                                more events by {singleEvent.user}
+                                </Button>
+                            </Link>
+
+                            <Link to={`/events/${singleEvent.id}/editproject`} >
+                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                EDIT THIS EVENT
                                 </Button>
                             </Link>
 
