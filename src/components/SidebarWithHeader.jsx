@@ -264,6 +264,7 @@ const SidebarWithHeader = () => {
           <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
           <Route path='/events/:eventId/editproject' element={<EditProject />} ></Route>
           <Route path='*' element={<Teapot  />} ></Route>
+          <Route path='/events/*' element={<Teapot  />} ></Route>
 
           </Routes>
 

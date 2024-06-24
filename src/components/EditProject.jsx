@@ -24,7 +24,85 @@ const EditProject = () => {
   const navigate = useNavigate()
 
   const {eventId} = useParams()
+  
 
+              useEffect(() => {
+                axios
+                .get(`http://localhost:5005/events/${eventId}`)
+                .then((response) => {
+                  const oneEvent = response.data
+                  setTitle(oneEvent.title)
+                  setDescription(oneEvent.description)
+                  setGenre(oneEvent.genre)
+                  setPicture(oneEvent.picture)
+                  setDate(oneEvent.date)
+                  setWhere(oneEvent.where)
+                  setSocial(oneEvent.social)
+                  setUser(oneEvent.user)
+                })
+                .catch((error) => console.log(error))
+
+              },[eventId])
+
+              const handleFormSubmit = (e) => {
+                e.preventDefault()
+                const requestBody = {title, description, genre, picture, date,where, social, user, secret_key}
+
+                axios
+                .put(`http://localhost:5005/events/${eventId}`, requestBody)
+                .then((response)=> {
+                  navigate(`/allevents/${eventId}`)
+                })
+              }
+
+              const handleDeleteEvent = () => {                    //  <== ADD
+                // Make a DELETE request to delete the project
+                axios
+                  .delete(`http://localhost:5005/events/${eventId}`)
+                  .then(() => {
+                    // Once the delete request is resolved successfully
+                    // navigate back to the list of projects.
+                    navigate("/allevents");
+                  })
+                  .catch((err) => console.log(err));
+              };  
+
+
+              const handleTitle = (event) =>{
+                setTitle(event.target.value)
+            }
+            const handleDescriprion = (event) =>{
+                setDescription(event.target.value)
+            }
+          
+            const handlePicture = (event) => {
+                setPicture(event.target.value)
+            }
+          
+            const handleDate = (event) => {
+                setDate(event.target.value)
+            }
+          
+            const handleSocial = (event) => {
+                setSocial(event.target.value)
+            }
+          
+            const handleWhere = (event) => {
+                setWhere(event.target.value)
+            }
+          
+            const handleByUser = (event) => {
+              setUser(event.target.value)
+            }
+           
+            const handleGenre = (event) => {
+                setGenre(event.target.value)
+            }
+          
+            const handleSecret_key = (event) => {
+                setSecret_key(event.target.value)
+            }
+/* 
   const handleTitle = (event) =>{
       setTitle(event.target.value)
   }
@@ -70,6 +148,7 @@ const EditProject = () => {
           }
           await axios.put(`http://localhost:5005//events/${eventId}`, project)
 
+          
           //once the project is created
           //redirect the user to the list of projects
           navigate(`/events/${eventId}`)
@@ -109,17 +188,17 @@ const EditProject = () => {
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getSingleEvent(eventId)
   }, [eventId])
-
+ */
 
 return (
   <div className='addEvent' >
   <div>
   <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>EDIT EVENT</Text>
 
-  <form onSubmit={handleSubmit} > 
+  <form onSubmit={handleFormSubmit} > 
 
 
   <Input
@@ -191,7 +270,6 @@ return (
     border='2px'
     borderColor='tomato'
     backgroundColor={'white'}
-    onClick={handleSubmit}
     >
     UPDATE EVENT
   </Button>
@@ -199,7 +277,7 @@ return (
 
 
 </form>
-<Button
+ <Button
   type='submit'
 size='md'
 height='48px'
@@ -207,10 +285,10 @@ width='200px'
 border='2px'
 borderColor='tomato'
 backgroundColor={'white'}
-onClick={deleteProject}
+onClick={handleDeleteEvent}
 >
  DELETE EVENT
-</Button>
+</Button> 
 
 
   </div>

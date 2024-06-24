@@ -83,7 +83,7 @@ function ProjectDetails() {
                         <Divider />
                         
                         <Text color='tomato' fontSize='2xl'>
-                               genre : party/music/lusco fusco
+                               {singleEvent.genre}
                           
                         </Text>
                         <Divider />
