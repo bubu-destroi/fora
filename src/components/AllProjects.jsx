@@ -2,8 +2,8 @@ import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
-import EventCard from './EventCard'
-import {Divider, Box,  ButtonGroup,Stack, Card, CardHeader, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
+//import EventCard from './EventCard'
+import {Divider, Box,  ButtonGroup ,Stack, Card, CardHeader, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
 
 
 const AllProjects  = () =>{
@@ -11,7 +11,7 @@ const AllProjects  = () =>{
     const [events, setEvents] = useState([])
   
 
-            const getAllEvents = async () =>{
+         /*    const getAllEvents = async () =>{
                 try{
                     const response = await axios.get('http://localhost:5005/events')
                     // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
@@ -21,7 +21,9 @@ const AllProjects  = () =>{
                 }catch (error) {
                     console.log('error fetching the events', error)
                 }
-            }
+            } */
+
+            
 
   /*   const filterToday = events => {
 
@@ -49,17 +51,29 @@ const AllProjects  = () =>{
     } */
 
     useEffect(()=>{
+
+        const getAllEvents = async () =>{
+            try{
+                const response = await axios.get('http://localhost:5005/events')
+                // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
+                console.log(response.data)
+                        setEvents(response.data)
+        
+            }catch (error) {
+                console.log('error fetching the events', error)
+            }
+        }
         console.log('mounting')
         getAllEvents()
-    }, [])
+    }, [events])
    
     return(
         <div>
-                    <Heading color='tomato' size='4xl'>ALL EVENTS</Heading>
+                    <Heading  pb={"20px"}  color='tomato' size='4xl'>ALL EVENTS</Heading>
  
         <Link to={`/events/new`} >
                                     
-             <Button flex='1' variant='ghost' >
+             <Button pt={"20px"} pb={"20px"} flex='1' variant='ghost' >
                 <Text color='tomato' fontSize='2xl'>ADD A NEW EVENT</Text>
              </Button>
 
@@ -72,15 +86,25 @@ const AllProjects  = () =>{
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
-                    <Card maxW='lg' >
+                    <Card maxW='lg'>
                         <CardBody>
-                        <Box display="flex" justifyContent="center" alignItems="center">
-                            <Image
-                                src={event.picture}
-                                borderRadius='lg'
-                                margin={'0'}
-                            />
+                        <Box display="flex" justifyContent="center" alignItems="center" >
+                            <Box 
+                                width="300px" 
+                                height="300px" 
+                                overflow="hidden" 
+                                borderRadius="none"
+                                display="flex" 
+                                justifyContent="center" 
+                                alignItems="center"
+                                >
+                                <Image
+                                    src={event.picture}
+                                    borderRadius="none"
+                                    margin="0"
+                                    />
                             </Box>
+                        </Box>
                             
                             <Stack mt='6' spacing='3'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
@@ -103,23 +127,19 @@ const AllProjects  = () =>{
                         <CardFooter
                             justify='space-between'
                             flexWrap='wrap'
-                            sx={{
-                            '& > button': {
-                                minW: '136px',
-                            },
-                            }}
-                        >
-                            <Button flex='1' variant='ghost' >
-                            save event
-                            </Button>
+                            sx={{'& > button': {
+                                minW: '136px',},}} >
 
-                            <Link to={`/events/${event.id}`} >
-                                    
-                            <Button flex='1' variant='ghost'>
-                            see details
-                            </Button>
+                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                save event
+                                </Button>
 
+                            <Link to={`/allevents/${event.id}`} >
+                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                see details
+                                </Button>
                             </Link>
+
                         </CardFooter>
                     </Card>
 

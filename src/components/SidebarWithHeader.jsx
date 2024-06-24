@@ -16,6 +16,7 @@ import {
   MenuItem,
   MenuList,
   Image,
+  Input
 
 } from '@chakra-ui/react'
 import {
@@ -25,8 +26,8 @@ import {
   FiChevronDown,
 
 } from 'react-icons/fi'
-import{Routes, Route, Link} from 'react-router-dom'
-
+import{Routes, Route, Link, useNavigate} from 'react-router-dom'
+import { useState } from 'react'
 
 
 
@@ -41,17 +42,30 @@ import AddProject from './AddProject'
 import ProjectDetails from './ProjectDetails'
 
 
-const LinkItems = [
+const LinkItems =  [
+
+
   
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/allevents' },
-  { name: 'WHEN', to: '/events/when' },
-  { name: 'WHERE',to: '/events/where' }]
+  { name: 'WHEN', to:'/events/when', type: 'date' },
+  { name: 'WHERE',to: '/events/where' } ]
 
 
 
 
 const SidebarContent = ({ onClose, ...rest }) => {
+
+  const [selectedDate, setSelectedDate] = useState('');
+  const [showDateInput, setShowDateInput] = useState(false);
+  const navigate = useNavigate()
+
+  const handleDateChange = (event) => {
+    setSelectedDate(event.target.value);
+    setShowDateInput(false); 
+    navigate(`/events/when/${event.target.value}`); 
+  };
+
   return (
     <Box
       transition="3s ease"
@@ -69,42 +83,63 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
          {LinkItems.map((link) => (
-        <NavItem fontSize="2xl" key={link.name} href={link.to}>
+          <NavItem
+          fontSize={"2xl"}
+          key={link.name}
+          link={link}
+          showDateInput={showDateInput}
+          setShowDateInput={setShowDateInput}
+          handleDateChange={handleDateChange}>
           {link.name}
         </NavItem>
-
       ))} 
-    </Box>
-  )
-}
+          {showDateInput && (
+            <Box p="4" mx="4">
+              <Input type="date" value={selectedDate} onChange={handleDateChange} />
+            </Box>
+          )}
+        </Box>
+      )
+    }
 
-const NavItem = ({  children, href, ...rest}) => {
-  return (
-    <Box
-      as="a"
-      href={href}
-      style={{ textDecoration: 'none' }}
-      _focus={{ boxShadow: 'none' }}>
-      
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          //bg: 'cyan.400',
-          color: 'red',
-        }}
-        {...rest}>
-      
-        {children}
-      </Flex>
-      
-    </Box>
-  )
-}
+    const NavItem = ({ link, showDateInput, setShowDateInput, handleDateChange }) => {
+  if (link.type === 'date') {
+    return (
+      <Box mt="4">
+        <Flex
+          align="center"
+          p="4"
+          mx="4"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          onClick={() => {setShowDateInput(!showDateInput) } }
+          _hover={{ color: 'red' }}
+        >
+          <Text fontSize="2xl">{link.name}</Text>
+        </Flex>
+      </Box>
+    );
+  } else {
+    return (
+      <Box mt="4">
+        <Flex
+          align="center"
+          p="4"
+          mx="4"
+          borderRadius="lg"
+          role="group"
+          cursor="pointer"
+          _hover={{ color: 'red' }}
+        >
+          <Link to={link.to} style={{ textDecoration: 'none' }}>
+            <Text fontSize="2xl">{link.name}</Text>
+          </Link>
+        </Flex>
+      </Box>
+    );
+  }
+};
 
 const MobileNav = ({ onOpen, ...rest }) => {
   return (<>
@@ -217,6 +252,7 @@ const SidebarWithHeader = () => {
           <Routes>
           <Route path='/' element={<AllProjects  />} ></Route>
           <Route path='/events/:filter' element={<Projects  />} ></Route>
+          <Route path='/events/:filter/:date' element={<Projects  />} ></Route>
           <Route path='/allevents' element={<AllProjects  />} ></Route>
           <Route path='/events/new' element={<AddProject  />} ></Route>
           <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>

@@ -10,7 +10,7 @@ const Projects  = () =>{
 
     const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
-    const {filter} = useParams()
+    const {filter, date} = useParams()
 
     
 
@@ -20,6 +20,31 @@ const Projects  = () =>{
         const year = todayDate.getFullYear()
         const month = todayDate.getMonth();
         const day = todayDate.getDate()
+        console.log(year, month, day)
+
+        const filteredEvents = events.filter(event => {
+            const eventDate = new Date(event.date)
+            const eventYear = eventDate.getFullYear()
+            const eventMonth = eventDate.getMonth();
+            const eventDay = eventDate.getDate()
+            console.log(eventYear, eventMonth, eventDay)
+
+            
+            if(year === eventYear && month === eventMonth && day === eventDay) {
+                return true
+            }
+    
+        })
+
+        setFilteredEvents(filteredEvents)
+    }
+
+    const filterDate = (events, selectedDate )=> {
+
+        const date = new Date(selectedDate)
+        const year = date.getFullYear()
+        const month = date.getMonth();
+        const day = date.getDate()
         console.log(year, month, day)
 
         const filteredEvents = events.filter(event => {
@@ -50,17 +75,19 @@ const Projects  = () =>{
     
                 if(filter==='today') {
                     filterToday(response.data)
-                } else {
+                }else if(filter === 'when' && date){
+                    filterDate(response.data, date)
+                }
+                else {
                     setFilteredEvents(events)
                 }
-    
-    
+
             }catch (error) {
                 console.log('error fetching the events', error)
             }
         }
         getEvents(filter)
-    }, [filter])
+    }, [filter, date])
    
     return(
         <div className="filteredEvents">
@@ -89,15 +116,25 @@ const Projects  = () =>{
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
-                    <Card maxW='lg' >
+                    <Card maxW='lg'>
                         <CardBody>
-                        <Box display="flex" justifyContent="center" alignItems="center">
-                            <Image
-                                src={event.picture}
-                                borderRadius='lg'
-                                margin={'0'}
-                            />
+                        <Box display="flex" justifyContent="center" alignItems="center" >
+                            <Box 
+                                width="300px" 
+                                height="300px" 
+                                overflow="hidden" 
+                                borderRadius="none"
+                                display="flex" 
+                                justifyContent="center" 
+                                alignItems="center"
+                                >
+                                <Image
+                                    src={event.picture}
+                                    borderRadius="none"
+                                    margin="0"
+                                    />
                             </Box>
+                        </Box>
                             <Stack mt='6' spacing='3'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
                             <Text>

@@ -118,6 +118,7 @@ const AddProject = () => {
 
 
     <Input
+    type='url'
     color='tomato'
     placeholder='link to social media'
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={social} onChange={handleSocial} />

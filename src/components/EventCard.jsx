@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const EventCard = ({ event }) => {
     return (
 
-    <Card maxW='lg'mx="auto" >
+    <Card borderBottomRadius={"none"}  maxW='lg' mx="auto" >
       <CardBody>
       <Box display="flex" justifyContent="center" alignItems="center">
           <Image
@@ -31,7 +31,7 @@ const EventCard = ({ event }) => {
             </Text>
           </Stack>
       </CardBody>
-      
+      <Divider />
       <CardFooter
         justify='space-between'
         flexWrap='wrap'

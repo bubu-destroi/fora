@@ -37,35 +37,43 @@ function ProjectDetails() {
     return (
       <>
 
-      <Center height="110vh" flexDirection="column">
+      <Center  height="140vh" flexDirection="column">
         <Box width={'100%'}>
         {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
     
         {singleEvent &&  ( 
-          
-                      <Card maxW='lg' >
-                        <CardBody>
+
+                      <Card borderBottomRadius={"none"}  maxW='xl' >
+                        <CardBody borderBottomRadius={"none"} >
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
                                 src={singleEvent.picture}
-                                borderRadius='lg'
+                                
+                                borderRadius='none'
                                 margin={'0'}
                             />
                             </Box>
                             <Stack mt='6' spacing='3'>
-                            <Heading color='tomato' size='lg'>{singleEvent.title}</Heading>
-                            <Text>
+                            <Heading color='tomato' size='4xl'>{singleEvent.title}</Heading>
+
+                            <Text fontSize={"2xl"}>
                                 {singleEvent.description}
                             </Text>
-                            <Text>
-                                {singleEvent.social}
-                            </Text>
+
+                            <Text>{singleEvent.description}</Text>
+                            <Link href={singleEvent.social} color="blue.500" isExternal>
+                              <Text color="tomato" fontSize="2xl">{singleEvent.social}</Text>
+                             
+                            </Link>
+                            
                             <Text color='tomato' fontSize='2xl'>
                                 {singleEvent.date}
                             </Text>
+
                             <Text color='tomato' fontSize='2xl'>
                                 {singleEvent.where}
                             </Text>
+
                             </Stack>
                         </CardBody>
                         <Divider />
@@ -77,10 +85,11 @@ function ProjectDetails() {
                                 minW: '136px',},}} >
                                 
                                 <Button fontSize='2xl' flex='1' variant='ghost' >
-                                save <embed src="" type="" />vent
+                                save event
+                      
                                 </Button>
 
-                            <Link to={`/events/${singleEvent.id}`} >
+                            <Link to={`/allevents/${singleEvent.id}`} >
                                 <Button fontSize='2xl' flex='1' variant='ghost'>
                                 see details
                                 </Button>
