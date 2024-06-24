@@ -49,7 +49,7 @@ const LinkItems =  [
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/allevents' },
   { name: 'WHEN', to:'/events/when', type: 'date' },
-  { name: 'WHERE',to: '/events/where' } ]
+  { name: 'PLACE' } ]
 
 
 
@@ -64,6 +64,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
     setSelectedDate(event.target.value);
     setShowDateInput(false); 
     navigate(`/events/when/${event.target.value}`); 
+    onClose()
   };
 
   return (
@@ -89,7 +90,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
           link={link}
           showDateInput={showDateInput}
           setShowDateInput={setShowDateInput}
-          handleDateChange={handleDateChange}>
+          handleDateChange={handleDateChange}
+          onClose={onClose}>
           {link.name}
         </NavItem>
       ))} 
@@ -102,7 +104,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       )
     }
 
-    const NavItem = ({ link, showDateInput, setShowDateInput, handleDateChange }) => {
+    const NavItem = ({ link, showDateInput, setShowDateInput,onClose }) => {
   if (link.type === 'date') {
     return (
       <Box mt="4">
@@ -130,7 +132,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
           borderRadius="lg"
           role="group"
           cursor="pointer"
+          onClick={onClose}
           _hover={{ color: 'red' }}
+          
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
             <Text fontSize="2xl">{link.name}</Text>
@@ -165,7 +169,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         icon={<FiMenu />}
       />
       <Box display="flex" justifyContent="center" flex="1" >
-        <Link to='/allevents' >
+        <Link to='/events/today' >
         <Image
           src={foraLogo}
           width={'auto'}

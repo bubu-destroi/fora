@@ -51,7 +51,7 @@ const AddProject = () => {
         let id = Math.random() * 1000
         try{
             const project ={
-                id, title, description, picture, date, social, secret_key
+                id, title, description, picture, date, where, social, secret_key
             }
             await axios.post(`http://localhost:5005/events`, project)
             //once the project is created
@@ -126,6 +126,7 @@ const AddProject = () => {
     <br/>
 
     <Input
+    type='password'
     color='tomato'
     placeholder='secret key (for later edit)'
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={secret_key} onChange={handleSecret_key} />

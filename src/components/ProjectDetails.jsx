@@ -60,7 +60,6 @@ function ProjectDetails() {
                                 {singleEvent.description}
                             </Text>
 
-                            <Text>{singleEvent.description}</Text>
                             <Link href={singleEvent.social} color="blue.500" isExternal>
                               <Text color="tomato" fontSize="2xl">{singleEvent.social}</Text>
                              
@@ -69,10 +68,10 @@ function ProjectDetails() {
                             <Text color='tomato' fontSize='2xl'>
                                 {singleEvent.date}
                             </Text>
-
                             <Text color='tomato' fontSize='2xl'>
                                 {singleEvent.where}
                             </Text>
+
 
                             </Stack>
                         </CardBody>

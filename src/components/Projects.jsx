@@ -93,6 +93,7 @@ const Projects  = () =>{
         <div className="filteredEvents">
 
             <Heading pt={'10px'} pb={'10px'} color='tomato' size='4xl'>{filter}</Heading>
+            <Heading pt={'10px'} pb={'10px'} color='gray.600' size='4xl'>{date}</Heading>
             <Link to={`/events/new`} >
                                                 
                 <Button flex='1' variant='ghost' >

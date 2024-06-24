@@ -85,6 +85,7 @@ const AllProjects  = () =>{
             {events.map(event => {return( 
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
+                    
 
                     <Card maxW='lg'>
                         <CardBody>
@@ -98,6 +99,8 @@ const AllProjects  = () =>{
                                 justifyContent="center" 
                                 alignItems="center"
                                 >
+                                
+                            
                                 <Image
                                     src={event.picture}
                                     borderRadius="none"
@@ -120,6 +123,8 @@ const AllProjects  = () =>{
                             <Text color='tomato' fontSize='2xl'>
                                 {event.where}
                             </Text>
+                           
+                            
                             </Stack>
                         </CardBody>
                         <Divider />
