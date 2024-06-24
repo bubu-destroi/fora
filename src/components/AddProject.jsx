@@ -1,7 +1,7 @@
-import  { useEffect, useState } from 'react'
+import  { useEffect, useState, InputRightElement } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-import { Input, SimpleGrid, Box, AbsoluteCenter
+import { Input, SimpleGrid, Box, AbsoluteCenter, InputGroup
  } from '@chakra-ui/react'
 
 
@@ -17,6 +17,8 @@ const AddProject = () => {
     const [where, setWhere] = useState('')
     const [social, setSocial] = useState('https://')
     const [secret_key, setSecret_key] = useState('')
+    const [show, setShow] = useState(false)
+    const handleClick = () => setShow(!show)
     const navigate = useNavigate()
 
     const handleTitle = (event) =>{
@@ -124,24 +126,32 @@ const AddProject = () => {
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={social} onChange={handleSocial} />
 
     <br/>
+    
+  
 
+ 
+ 
+   
     <Input
-    type='password'
-    color='tomato'
-    placeholder='secret key (for later edit)'
+    color='tomato' 
+    placeholder='secret key (for later edit)' 
     _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={secret_key} onChange={handleSecret_key} />
+       
+
+
+
 
     <br/>
    <Button
     type='submit'
-  size='md'
-  height='48px'
-  width='200px'
-  border='2px'
-  borderColor='tomato'
-  backgroundColor={'white'}
+    size='md'
+    height='48px'
+    width='200px'
+    border='2px'
+    borderColor='tomato'
+    backgroundColor={'white'}
 >
- add event
+ create
 </Button>
 </form>
 <div  >

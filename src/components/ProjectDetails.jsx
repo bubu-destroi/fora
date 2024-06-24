@@ -76,6 +76,18 @@ function ProjectDetails() {
                             </Stack>
                         </CardBody>
                         <Divider />
+                        <Text color='tomato' fontSize='2xl'>
+                                created by : username
+                          
+                        </Text>
+                        <Divider />
+                        
+                        <Text color='tomato' fontSize='2xl'>
+                               genre : party/music/lusco fusco
+                          
+                        </Text>
+                        <Divider />
+
                         <Center>
                         <CardFooter
                             justify='space-between'
@@ -87,20 +99,22 @@ function ProjectDetails() {
                                 save event
                       
                                 </Button>
+                               
 
                             <Link to={`/allevents/${singleEvent.id}`} >
                                 <Button fontSize='2xl' flex='1' variant='ghost'>
-                                see details
+                                more events by -user-
                                 </Button>
                             </Link>
 
                         </CardFooter>
+                        
                         </Center>
                     </Card>
 )}
          </Box>
     
-          <Button mt={4}>
+          <Button mt={6}>
             <RouterLink to="/allevents">
               BACK TO EVENTS
             </RouterLink>

@@ -97,7 +97,7 @@ const Projects  = () =>{
             <Link to={`/events/new`} >
                                                 
                 <Button flex='1' variant='ghost' >
-                     <Text color='tomato' fontSize='2xl'>ADD A NEW EVENT</Text>
+                     <Text color='tomato' fontSize='2xl'>CREATE A NEW EVENT</Text>
                  </Button>
                        
              </Link>
