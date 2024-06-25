@@ -1,12 +1,14 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 //import { useParams } from "react-router-dom"
 import { Input } from '@chakra-ui/react'
+import { LoadScript, Autocomplete } from '@react-google-maps/api';
 
 
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup } from '@chakra-ui/react'
 
+const libraries = ['places'];
 
 const EditProject = () => {
 
@@ -20,8 +22,11 @@ const EditProject = () => {
   const [genre, setGenre] = useState('')
   const [secret_key, setSecret_key] = useState('')
   const [singleEvent, setSingleEvent] = useState(null);
+  const [keyAut, setKeyAut] = useState('')
   
   const navigate = useNavigate()
+
+  const autocompleteRef = useRef(null);
 
   const {eventId} = useParams()
   
@@ -39,6 +44,7 @@ const EditProject = () => {
                   setWhere(oneEvent.where)
                   setSocial(oneEvent.social)
                   setUser(oneEvent.user)
+                  setSecret_key(oneEvent.secret_key)
                 })
                 .catch((error) => console.log(error))
 
@@ -48,23 +54,39 @@ const EditProject = () => {
                 e.preventDefault()
                 const requestBody = {title, description, genre, picture, date,where, social, user, secret_key}
 
+
+                if(keyAut === secret_key){
+
+
                 axios
                 .put(`http://localhost:5005/events/${eventId}`, requestBody)
                 .then((response)=> {
                   navigate(`/allevents/${eventId}`)
                 })
+              }else{ return(
+                <Text>WRONG KEY, TRY AGAIN</Text>
+              )
+
+                }
               }
 
               const handleDeleteEvent = () => {                    //  <== ADD
                 // Make a DELETE request to delete the project
-                axios
+
+
+                if(keyAut === secret_key){
+
+
+                  axios
                   .delete(`http://localhost:5005/events/${eventId}`)
-                  .then(() => {
-                    // Once the delete request is resolved successfully
-                    // navigate back to the list of projects.
-                    navigate("/allevents");
+                  .then((response)=> {
+                    navigate(`/allevents/`)
                   })
-                  .catch((err) => console.log(err));
+                }else{ return(
+                  <Text>WRONG KEY, TRY AGAIN</Text>
+                )}
+  
+
               };  
 
 
@@ -99,9 +121,16 @@ const EditProject = () => {
                 setGenre(event.target.value)
             }
           
-            const handleSecret_key = (event) => {
+           /*  const handleSecret_key = (event) => {
                 setSecret_key(event.target.value)
-            }
+            } */
+
+          
+                const handleKeyAut = (event) => {
+                  setKeyAut(event.target.value)
+              }
+
+
 /* 
   const handleTitle = (event) =>{
       setTitle(event.target.value)
@@ -193,6 +222,13 @@ const EditProject = () => {
   }, [eventId])
  */
 
+  const onPlaceChanged = () => {
+    const place = autocompleteRef.current.getPlace();
+    const address = place?.formatted_address || '';
+    setWhere(address);
+  };
+
+
 return (
   <div className='addEvent' >
   <div>
@@ -235,10 +271,19 @@ return (
   placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate}  />
   <br />
 
-  <Input
-  color='tomato'
-  placeholder='where'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={where} onChange={handleWhere} />
+  <LoadScript googleMapsApiKey='AIzaSyDSbSrNsYCqg7GV5daI7wa7h3b1eu7zHPk' libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+                <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+                  <Input
+                    type='text'
+                    color='tomato'
+                    placeholder='where'
+                    _placeholder={{ opacity: 0.4, color: 'inherit' }}
+                    width={'100%'}
+                    value={where}
+                    onChange={handleWhere}
+                  />
+                </Autocomplete>
+              </LoadScript>
 
   <br/>
 
@@ -257,8 +302,8 @@ return (
   <br/>
   <Input
   color='tomato'
-  placeholder='secret key (for later edit)'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={secret_key} onChange={handleSecret_key} />
+  placeholder='type the secret key'
+  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={keyAut} onChange={handleKeyAut} />
 
   <br/>
 
@@ -300,10 +345,10 @@ onClick={handleDeleteEvent}
 <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
   <Image
     src={picture}
-    borderRadius='lg'
+    borderRadius='none'
   />
   <Stack mt='6' spacing='3'>
-    <Heading size='md'>{title}</Heading>
+    <Heading color='tomato' size='xl'>{title}</Heading>
     <Text>
       {description}
     </Text>

@@ -1,7 +1,6 @@
 
 import {  useParams, Link,  Link as RouterLink } from 'react-router-dom'
 import { Card, CardBody,Image, Stack, Heading, } from '@chakra-ui/react'
-//import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 //import EventCard from './EventCard'
@@ -60,7 +59,7 @@ function ProjectDetails() {
                                 {singleEvent.description}
                             </Text>
 
-                            <Link href={singleEvent.social} color="blue.500" isExternal>
+                            <Link to={singleEvent.social} color="blue.500" target='_blank'>
                               <Text color="tomato" fontSize="2xl">{singleEvent.social}</Text>
                              
                             </Link>

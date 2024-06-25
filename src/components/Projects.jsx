@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState } from "react"
 import axios  from "axios"
-import {  useParams } from 'react-router-dom'
+import {  useParams, useNavigate } from 'react-router-dom'
 import {  SimpleGrid} from '@chakra-ui/react'
 import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, Center } from '@chakra-ui/react'
 
@@ -11,7 +11,7 @@ const Projects  = () =>{
     const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
     const {filter, date} = useParams()
-
+    const navigate = useNavigate()
     
 
     const filterToday = events => {
@@ -77,9 +77,11 @@ const Projects  = () =>{
                     filterToday(response.data)
                 }else if(filter === 'when' && date){
                     filterDate(response.data, date)
+                } else if(filter === 'place') {
+                   setFilteredEvents(events)
                 }
                 else {
-                    setFilteredEvents(events)
+                    navigate('/not-found')
                 }
 
             }catch (error) {
