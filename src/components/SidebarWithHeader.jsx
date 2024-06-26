@@ -71,6 +71,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
 
   return (
     <Box
+    //pt={'100px'}
       transition="3s ease"
       bg={useColorModeValue('white')}
       borderRight="1px"
@@ -81,7 +82,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="4xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
-          WHAT IS HAPPENING?
+          WHAT 
+          IS 
+          HAPPENING?
         </Text>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
@@ -174,8 +177,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
         <Link to='/events/today' >
         <Image
           src={foraLogo}
-          width={'auto'}
+          width={'800px'}
           height={'auto'}
+          pl={'40px'}
         />
         </Link>
       </Box>

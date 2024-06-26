@@ -26,7 +26,7 @@ function App()  {
  */}
  <ChakraProvider theme={theme}>
    <SidebarWithHeader />
-  <Places/>
+  
    </ChakraProvider>
    {/* <Routes>
     <Route path = '/' element={<Homepage/>} />

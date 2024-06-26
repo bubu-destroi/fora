@@ -42,7 +42,7 @@ function ProjectDetails() {
     
         {singleEvent &&  ( 
 
-                      <Card borderBottomRadius={"none"}  maxW='xl' >
+                      <Card borderBottomRadius={"none"}  maxW='lg' >
                         <CardBody borderBottomRadius={"none"} >
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
@@ -76,7 +76,7 @@ function ProjectDetails() {
                         </CardBody>
                         <Divider />
                         <Text color='tomato' fontSize='2xl'>
-                                created by : username
+                                created by : {singleEvent.user}
                           
                         </Text>
                         <Divider />
