@@ -33,7 +33,7 @@ const EditProject = () => {
 
               useEffect(() => {
                 axios
-                .get(`http://localhost:5005/events/${eventId}`)
+                .get(`https://fora-server.onrender.com/events/${eventId}`)
                 .then((response) => {
                   const oneEvent = response.data
                   setTitle(oneEvent.title)
@@ -59,7 +59,7 @@ const EditProject = () => {
 
 
                 axios
-                .put(`http://localhost:5005/events/${eventId}`, requestBody)
+                .put(`https://fora-server.onrender.com/events/${eventId}`, requestBody)
                 .then((response)=> {
                   navigate(`/allevents/${eventId}`)
                 })
@@ -78,7 +78,7 @@ const EditProject = () => {
 
 
                   axios
-                  .delete(`http://localhost:5005/events/${eventId}`)
+                  .delete(`https://fora-server.onrender.com/events/${eventId}`)
                   .then((response)=> {
                     navigate(`/allevents/`)
                   })
@@ -175,7 +175,7 @@ const EditProject = () => {
           const project ={
                title, description, genre, picture, date, social, user, secret_key
           }
-          await axios.put(`http://localhost:5005//events/${eventId}`, project)
+          await axios.put(`https://fora-server.onrender.com//events/${eventId}`, project)
 
           
           //once the project is created
@@ -191,7 +191,7 @@ const EditProject = () => {
 
   const deleteProject = async (id) => {
     try {
-      await axios.delete(`http://localhost:5005//events/${id}`)
+      await axios.delete(`https://fora-server.onrender.com//events/${id}`)
       navigate('/allevents/')
       
     } catch (error) {
@@ -202,7 +202,7 @@ const EditProject = () => {
 
   const getSingleEvent = async id => {
     try {
-      const response = await axios.get(`http://localhost:5005/events/${id}`)
+      const response = await axios.get(`https://fora-server.onrender.com/events/${id}`)
       setSingleEvent(response.data)
       setTitle(response.data.title)
       setDescription(response.data.description)

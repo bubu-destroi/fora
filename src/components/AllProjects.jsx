@@ -13,7 +13,7 @@ const AllProjects  = () =>{
 
          /*    const getAllEvents = async () =>{
                 try{
-                    const response = await axios.get('http://localhost:5005/events')
+                    const response = await axios.get('https://fora-server.onrender.com/events')
                     // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
                     console.log(response.data)
                             setEvents(response.data)
@@ -54,7 +54,7 @@ const AllProjects  = () =>{
 
         const getAllEvents = async () =>{
             try{
-                const response = await axios.get('http://localhost:5005/events')
+                const response = await axios.get('https://fora-server.onrender.com/events')
                 // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
                 console.log(response.data)
                         setEvents(response.data)

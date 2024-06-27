@@ -62,7 +62,7 @@ const AddProject = () => {
             const project ={
                 id, title, description, picture, date, where, social, secret_key
             }
-            await axios.post(`http://localhost:5005/events`, project)
+            await axios.post(`https://fora-server.onrender.com/events`, project)
             //once the project is created
             //redirect the user to the list of projects
             navigate(`/allevents/${id}`)
@@ -339,7 +339,7 @@ const AddProject = () => {
         social,
         secret_key,
       };
-      await axios.post(`http://localhost:5005/events`, project);
+      await axios.post(`https://fora-server.onrender.com/events`, project);
       navigate(`/allevents/${id}`);
     } catch (error) {
       console.log('error creating the new event', error);

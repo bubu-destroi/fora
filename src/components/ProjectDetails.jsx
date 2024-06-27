@@ -20,7 +20,7 @@ function ProjectDetails() {
   
   const getSingleEvent = async id => {
     try {
-      const response = await axios.get(`http://localhost:5005/events/${id}`)
+      const response = await axios.get(`https://fora-server.onrender.com/events/${id}`)
       setSingleEvent(response.data)
     } catch (error) {
       console.log('error', error)
