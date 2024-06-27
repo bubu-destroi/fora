@@ -4,7 +4,6 @@ import './App.css'
 import SidebarWithHeader from './components/SidebarWithHeader'
 import theme from '../src/components/theme'
 import { ChakraProvider } from '@chakra-ui/react';
-import Places from "./components/Places"
 
 /* import foraLogo from '../src/assets/FORA LOGO.png' */
 
