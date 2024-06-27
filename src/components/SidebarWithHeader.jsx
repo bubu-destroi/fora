@@ -81,7 +81,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="4xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+        <Text fontSize="2xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
           WHAT 
           IS 
           HAPPENING?
@@ -90,7 +90,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
          {LinkItems.map((link) => (
           <NavItem
-          fontSize={"2xl"}
+          fontSize={"xl"}
           key={link.name}
           link={link}
           showDateInput={showDateInput}
@@ -117,13 +117,13 @@ const SidebarContent = ({ onClose, ...rest }) => {
           align="center"
           p="4"
           mx="4"
-          borderRadius="lg"
+          borderRadius="none"
           role="group"
           cursor="pointer"
           onClick={() => {setShowDateInput(!showDateInput) } }
           _hover={{ color: 'red' }}
         >
-          <Text fontSize="2xl">{link.name}</Text>
+          <Text fontSize="xl">{link.name}</Text>
         </Flex>
       </Box>
     );
@@ -134,7 +134,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           align="center"
           p="4"
           mx="4"
-          borderRadius="lg"
+          borderRadius="none"
           role="group"
           cursor="pointer"
           onClick={onClose}
@@ -142,7 +142,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
           
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
-            <Text fontSize="2xl">{link.name}</Text>
+            <Text fontSize="xl">{link.name}</Text>
           </Link>
         </Flex>
       </Box>
@@ -177,7 +177,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
         <Link to='/events/today' >
         <Image
           src={foraLogo}
-          width={'800px'}
+          width={'700px'}
           height={'auto'}
           pl={'40px'}
         />
@@ -193,7 +193,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   size={'lg'}
                   src={perfilLogo} 
                 borderRadius={'0px'}
-                width = {'70px'}
+                width = {'60px'}
                 left = {'-10px'}
                 />
                 <VStack
@@ -201,7 +201,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   alignItems="center"
                   spacing="1px"
                   ml="2">
-                  <Text fontSize="3xl">username</Text>
+                  <Text fontSize="xl">username</Text>
                 
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>

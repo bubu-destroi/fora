@@ -3,7 +3,6 @@ import {  useParams, Link,  Link as RouterLink } from 'react-router-dom'
 import { Card, CardBody,Image, Stack, Heading, } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-//import EventCard from './EventCard'
 import { Text , Button,Center,Box, Divider, CardFooter} from '@chakra-ui/react'
 
 function ProjectDetails() {
@@ -53,7 +52,7 @@ function ProjectDetails() {
                             />
                             </Box>
                             <Stack mt='6' spacing='3'>
-                            <Heading color='tomato' size='4xl'>{singleEvent.title}</Heading>
+                            <Heading color='tomato' size='2xl'>{singleEvent.title}</Heading>
 
                             <Text fontSize={"2xl"}>
                                 {singleEvent.description}
