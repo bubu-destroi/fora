@@ -1,14 +1,16 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState,useContext } from "react"
 import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
 import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
-
+import { EventsContext } from "../context/Events.context"
 
 const AllProjects  = () =>{
+    const {allEvents}= useContext(EventsContext)
 
-    const [events, setEvents] = useState([])
+
+    // const [events, setEvents] = useState([])
   
 
          /*    const getAllEvents = async () =>{
@@ -50,22 +52,22 @@ const AllProjects  = () =>{
         setFilteredEvents(filteredEvents)
     } */
 
-    useEffect(()=>{
+    // useEffect(()=>{
 
-        const getAllEvents = async () =>{
-            try{
-                const response = await axios.get('https://fora-server.onrender.com/events')
-                // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
-                console.log(response.data)
-                        setEvents(response.data)
+    //     const getAllEvents = async () =>{
+    //         try{
+    //             const response = await axios.get('https://fora-server.onrender.com/events')
+    //             // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
+    //             console.log(response.data)
+    //                     setEvents(response.data)
         
-            }catch (error) {
-                console.log('error fetching the events', error)
-            }
-        }
-        console.log('mounting')
-        getAllEvents()
-    }, [events])
+    //         }catch (error) {
+    //             console.log('error fetching the events', error)
+    //         }
+    //     }
+    //     console.log('mounting')
+    //     getAllEvents()
+    // }, [])
    
     return(
         <div>
@@ -82,7 +84,7 @@ const AllProjects  = () =>{
             <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
            
            
-            {events.map(event => {return( 
+            {allEvents.map(event => {return( 
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
@@ -135,12 +137,12 @@ const AllProjects  = () =>{
                             sx={{'& > button': {
                                 minW: '136px',},}} >
 
-                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                <Button fontSize='lg' flex='1' variant='ghost' >
                                 save event
                                 </Button>
 
                             <Link to={`/allevents/${event.id}`} >
-                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                <Button fontSize='lg' flex='1' variant='ghost'>
                                 see details
                                 </Button>
                             </Link>

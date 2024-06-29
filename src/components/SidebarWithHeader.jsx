@@ -25,7 +25,8 @@ import {
 
 } from 'react-icons/fi'
 import{Routes, Route, Link, useNavigate} from 'react-router-dom'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { EventsContext } from '../context/Events.context'
 
 
 
@@ -48,16 +49,22 @@ const LinkItems =  [
   
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/allevents' },
-  { name: 'PLACE' },
+  { name: 'PLACE', type: 'place' },
   { name: 'WHEN', to:'/events/when', type: 'date' } ]
 
 
 
 
 const SidebarContent = ({ onClose, ...rest }) => {
+  const {filterEvents}= useContext(EventsContext)
+
 
   const [selectedDate, setSelectedDate] = useState('');
+  const [search, setSearch] = useState('');
   const [showDateInput, setShowDateInput] = useState(false);
+  const [showPlaceInput, setShowPlaceInput] = useState(false);
+
+  
   const navigate = useNavigate()
 
   const handleDateChange = (event) => {
@@ -66,6 +73,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
     navigate(`/events/when/${event.target.value}`); 
     onClose()
   };
+
+  const handlePlaceSearch = (event) => {
+    console.log('event-target')
+    setSearch(event.target.value)
+    filterEvents(event.target.value)
+  }
+
+  useEffect(() => {
+
+  }, [search])
 
   return (
     <Box
@@ -87,16 +104,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
          {LinkItems.map((link) => (
+          <>
+
           <NavItem
           fontSize={"xl"}
           key={link.name}
           link={link}
           showDateInput={showDateInput}
+          showPlaceInput={showPlaceInput}
           setShowDateInput={setShowDateInput}
           handleDateChange={handleDateChange}
+          setShowPlaceInput={setShowPlaceInput}
+          handlePlaceSearch={handlePlaceSearch}
           onClose={onClose}>
           {link.name}
         </NavItem>
+        {showPlaceInput && link.name === 'PLACE' && (
+            <Box p="4" mx="4">
+              <Input type="text" value={search} onChange={handlePlaceSearch} />
+            </Box>
+          )}
+          </>
       ))} 
           {showDateInput && (
             <Box p="4" mx="4">
@@ -104,10 +132,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
             </Box>
           )}
         </Box>
+
       )
     }
 
-    const NavItem = ({ link, showDateInput, setShowDateInput,onClose }) => {
+    const NavItem = ({ link, showDateInput, setShowDateInput,onClose,showPlaceInput, setShowPlaceInput }) => {
   if (link.type === 'date') {
     return (
       <Box mt="4">
@@ -122,6 +151,26 @@ const SidebarContent = ({ onClose, ...rest }) => {
           _hover={{ color: 'red' }}
         >
           <Text fontSize="xl">{link.name}</Text>
+        </Flex>
+      </Box>
+    );
+  } else if(link.type === 'place') {
+    return (
+      <Box mt="4">
+        <Flex
+          align="center"
+          p="4"
+          mx="4"
+          borderRadius="none"
+          role="group"
+          cursor="pointer"
+          onClick={() => {setShowPlaceInput(!showPlaceInput) } }
+          _hover={{ color: 'red' }}
+          
+        >
+          <Link to={link.to} style={{ textDecoration: 'none' }}>
+            <Text fontSize="xl">{link.name}</Text>
+          </Link>
         </Flex>
       </Box>
     );

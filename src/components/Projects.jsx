@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState } from "react"
-import axios  from "axios"
+import { useEffect, useState, useContext } from "react"
 import {  useParams, useNavigate } from 'react-router-dom'
 import {  SimpleGrid} from '@chakra-ui/react'
 import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, Center } from '@chakra-ui/react'
-
+import { EventsContext } from "../context/Events.context"
 
 const Projects  = () =>{
-
-    const [events, setEvents] = useState([])
+    const {events}= useContext(EventsContext)
+    // const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
     const {filter, date} = useParams()
     const navigate = useNavigate()
@@ -64,22 +63,23 @@ const Projects  = () =>{
         setFilteredEvents(filteredEvents)
     }
 
+
     useEffect(()=>{
         console.log('mounting')
-        const getEvents = async () =>{
+        const filterEvents = async (events) =>{
             try{
-                const response = await axios.get('https://fora-server.onrender.com/events')
-                // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
-                console.log(response.data)
-                setEvents(response.data)
+                // const response = await axios.get('https://fora-server.onrender.com/events')
+                // // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
+                // console.log(response.data)
+                // setEvents(response.data)
     
                 if(filter==='today') {
-                    filterToday(response.data)
+                    filterToday(events)
                 }else if(filter === 'when' && date){
-                    filterDate(response.data, date)
+                    filterDate(events, date)
                 } else if(filter === 'place') {
-                   setFilteredEvents(events)
-                }
+                   setFilteredEvents(events)}
+                
                 else {
                     navigate('/not-found')
                 }
@@ -88,7 +88,7 @@ const Projects  = () =>{
                 console.log('error fetching the events', error)
             }
         }
-        getEvents(filter)
+        filterEvents(events)
     }, [filter, date])
    
     return(
@@ -162,12 +162,12 @@ const Projects  = () =>{
                             sx={{'& > button': {
                                 minW: '136px',},}} >
 
-                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                <Button fontSize='xl' flex='1' variant='ghost' >
                                 save event
                                 </Button>
 
                             <Link to={`/allevents/${event.id}`} >
-                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                <Button fontSize='xl' flex='1' variant='ghost'>
                                 see details
                                 </Button>
                             </Link>
