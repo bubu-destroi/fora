@@ -10,7 +10,7 @@ const EventsProviderWrapper = props =>{ //can deconstruct the props eg: {{childr
 
     const getEvents = async () =>{
         try{
-            const response = await axios.get('https://fora-server.onrender.com/events')
+            const response = await axios.get('https://fora-server-second-try.vercel.app/events')
             // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
             console.log(response.data)
             setEvents(response.data)

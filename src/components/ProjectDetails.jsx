@@ -19,7 +19,7 @@ function ProjectDetails() {
   
   const getSingleEvent = async id => {
     try {
-      const response = await axios.get(`https://fora-server.onrender.com/events/${id}`)
+      const response = await axios.get(`https://fora-server-second-try.vercel.app/events/${id}`)
       setSingleEvent(response.data)
     } catch (error) {
       console.log('error', error)
@@ -35,7 +35,7 @@ function ProjectDetails() {
     return (
       <>
 
-      <Center  height="140vh" flexDirection="column">
+      <Center  height="130vh" flexDirection="column">
         <Box width={'100%'}>
         {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
     

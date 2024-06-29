@@ -89,7 +89,7 @@ const AddProject = () => {
         social,
         secret_key,
       };
-      await axios.post(`https://fora-server.onrender.com/events`, project);
+      await axios.post(`https://fora-server-second-try.vercel.app/events`, project);
       navigate(`/allevents/${id}`);
     } catch (error) {
       console.log('error creating the new event', error);

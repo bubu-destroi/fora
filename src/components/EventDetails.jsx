@@ -37,7 +37,7 @@ export default function EventDetails()  {
   
   const getSingleEvent = async id => {
     try {
-      const response = await axios.get(`https://fora-server.onrender.com/events/${id}`)
+      const response = await axios.get(`https://fora-server-second-try.vercel.app/events/${id}`)
       setSingleEvent(response.data)
     } catch (error) {
       console.log('error', error)

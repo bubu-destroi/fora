@@ -9,7 +9,7 @@ const Projects  = () =>{
     const {events}= useContext(EventsContext)
     // const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
-    const {filter, date} = useParams()
+    const {filter, date, place} = useParams()
     const navigate = useNavigate()
     
 
@@ -63,12 +63,16 @@ const Projects  = () =>{
         setFilteredEvents(filteredEvents)
     }
 
+    /* const filterPlace = (events, searchQuery) => {
+        
+        }
+ */
 
     useEffect(()=>{
         console.log('mounting')
         const filterEvents = async (events) =>{
             try{
-                // const response = await axios.get('https://fora-server.onrender.com/events')
+                // const response = await axios.get('https://fora-server-second-try.vercel.app/events')
                 // // const response = await axios.get('https://0e416d24-c972-4cdd-8f5e-b60908b2b586.mock.pstmn.io/events')
                 // console.log(response.data)
                 // setEvents(response.data)
@@ -77,8 +81,8 @@ const Projects  = () =>{
                     filterToday(events)
                 }else if(filter === 'when' && date){
                     filterDate(events, date)
-                } else if(filter === 'place') {
-                   setFilteredEvents(events)}
+                } else if(filter === 'place' && place) {
+                   setFilteredEvents(events, place)}
                 
                 else {
                     navigate('/not-found')
@@ -89,7 +93,7 @@ const Projects  = () =>{
             }
         }
         filterEvents(events)
-    }, [filter, date])
+    }, [filter, date, place])
    
     return(
         <div className="filteredEvents">
