@@ -1,5 +1,5 @@
 
-import  { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef, useContext } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -20,6 +20,7 @@ import {
   ButtonGroup,
 } from '@chakra-ui/react';
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
+import { EventsContext } from '../context/Events.context';
 
 const libraries = ['places'];
 
@@ -33,6 +34,7 @@ const AddProject = () => {
   const [user, setUser] = useState('theme context here');
   const [genre, setGenre] = useState('');
   const [secret_key, setSecret_key] = useState('');
+const {getEvents} = useContext(EventsContext)
 
   const navigate = useNavigate();
   const autocompleteRef = useRef(null);
@@ -79,7 +81,6 @@ const AddProject = () => {
     console.log('este é o id', id)
     try {
       const project = {
-        id,
         title,
         description,
         genre,
@@ -89,8 +90,9 @@ const AddProject = () => {
         social,
         secret_key,
       };
-      await axios.post(`https://fora-server-second-try.vercel.app/events`, project);
-      navigate(`/allevents/${id}`);
+     const response = await axios.post(`https://fora-server-second-try.vercel.app/events`, project);
+      getEvents()
+      navigate(`/allevents/${response.data.id}`);
     } catch (error) {
       console.log('error creating the new event', error);
     }
@@ -105,14 +107,12 @@ const AddProject = () => {
   };
 
   return (
-    <Center display={'flex'} h={'400px'}>
+    <Center display={'flex'} h={'80vh'}>
       <Box position='relative'>
         <AbsoluteCenter axis='both'>
           <SimpleGrid spacing={6} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
             <form onSubmit={handleSubmit}>
-              <Text opacity='0.9' as='b' fontSize='200%' color='tomato'>
-                CREATE YOUR EVENT
-              </Text>
+              <Text opacity='0.9' as='b' fontSize='200%' color='tomato'> CREATE YOUR EVENT</Text>
 
               <Input color='tomato' placeholder='event title' _placeholder={{ opacity: 0.4, color: 'inherit' }} width={'100%'} value={title} onChange={handleTitle} />
               <br />

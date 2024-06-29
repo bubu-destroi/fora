@@ -77,6 +77,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
   const handlePlaceSearch = (event) => {
     setSearch(event.target.value)
     filterEvents(event.target.value)
+
+
   }
 
   useEffect(() => {
@@ -120,7 +122,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </NavItem>
         {showPlaceInput && link.name === 'PLACE' && (
             <Box p="4" mx="4">
-              <Input type="text" value={search} onChange={handlePlaceSearch} />
+              <Input type="text" value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
             </Box>
           )}
           </>

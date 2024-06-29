@@ -32,7 +32,7 @@ getEvents()
     },[])
 
     return(
-        <EventsContext.Provider value={{events, filterEvents,allEvents }} >
+        <EventsContext.Provider value={{events, filterEvents,allEvents,getEvents }} >
             {props.children}
         </EventsContext.Provider>
     )

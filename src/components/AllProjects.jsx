@@ -89,7 +89,9 @@ const AllProjects  = () =>{
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
 
-                    <Card maxW='lg'>
+                    <Card maxW='lg' 
+                    //key={event.id}
+                    >
                         <CardBody>
                         <Box display="flex" justifyContent="center" alignItems="center" >
                             <Box 

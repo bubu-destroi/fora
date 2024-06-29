@@ -1,12 +1,15 @@
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, useContext } from "react"
 import axios from "axios"
 import { useNavigate, useParams } from "react-router-dom"
 //import { useParams } from "react-router-dom"
-import { Input } from '@chakra-ui/react'
+import { Input} from '@chakra-ui/react'
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 
 
 import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup } from '@chakra-ui/react'
+
+import { EventsContext } from "../context/Events.context";
+
 
 const libraries = ['places'];
 
@@ -21,7 +24,6 @@ const EditProject = () => {
   const [user, setUser] = useState('')
   const [genre, setGenre] = useState('')
   const [secret_key, setSecret_key] = useState('')
-  const [singleEvent, setSingleEvent] = useState(null);
   const [keyAut, setKeyAut] = useState('')
   
   const navigate = useNavigate()
@@ -29,9 +31,10 @@ const EditProject = () => {
   const autocompleteRef = useRef(null);
 
   const {eventId} = useParams()
-  
+  const {getEvents} = useContext(EventsContext)
 
               useEffect(() => {
+                
                 axios
                 .get(`https://fora-server-second-try.vercel.app/events/${eventId}`)
                 .then((response) => {
@@ -50,41 +53,46 @@ const EditProject = () => {
 
               },[eventId])
 
-              const handleFormSubmit = (e) => {
+              const handleFormSubmit = async (e) => {
                 e.preventDefault()
                 const requestBody = {title, description, genre, picture, date,where, social, user, secret_key}
 
 
                 if(keyAut === secret_key){
 
+                  try{
 
-                axios
-                .put(`https://fora-server-second-try.vercel.app/events/${eventId}`, requestBody)
-                .then((response)=> {
-                  navigate(`/allevents/${eventId}`)
-                })
-              }else{ return(
-                <Text>WRONG KEY, TRY AGAIN</Text>
-              )
+                    await axios.put(`https://fora-server-second-try.vercel.app/events/${eventId}`, requestBody)
+                    getEvents()
+                    navigate(`/allevents/${eventId}`)
+                  }catch(error){
+                    console.log("error", error);
+                  }
+                
+                  }else{ return(
+                    <Text>WRONG KEY, TRY AGAIN</Text>)
+                      }
+                    }
 
-                }
-              }
-
-              const handleDeleteEvent = () => {                    //  <== ADD
+              const handleDeleteEvent = async () => {                    //  <== ADD
                 // Make a DELETE request to delete the project
 
 
                 if(keyAut === secret_key){
 
+                  try{
 
-                  axios
-                  .delete(`https://fora-server-second-try.vercel.app/events/${eventId}`)
-                  .then((response)=> {
-                    navigate(`/allevents/`)
-                  })
-                }else{ return(
-                  <Text>WRONG KEY, TRY AGAIN</Text>
-                )}
+                    await axios
+                    .delete(`https://fora-server-second-try.vercel.app/events/${eventId}`)
+                    getEvents()
+                      navigate(`/allevents/`)
+                  }catch (error){
+                      console.log('error',error)
+                  }
+                
+                }else { 
+                  console.log('wrong key')
+                }
   
 
               };  
@@ -230,150 +238,126 @@ const EditProject = () => {
 
 
 return (
-  <div className='addEvent' >
-  <div>
-  <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>EDIT EVENT</Text>
+ <>
 
-  <form onSubmit={handleFormSubmit} > 
+           <form onSubmit={handleFormSubmit} > 
+<Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>EDIT EVENT</Text>
+          <Input
+          color='tomato'
+          placeholder='event title'
+          _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={title} onChange={handleTitle} />
+          <br />
+          <Input
+          color='tomato'
+          placeholder='event description'
+          _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={description} onChange={handleDescriprion} />
+          <br/>
+          <Input
+            type='text'
+            color='tomato'
+            placeholder='genre'
+            _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={genre} onChange={handleGenre} />
+            <br/>
+          <Input
+          color='tomato'
+          placeholder='picture url'
+          _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'}  value={picture} onChange={handlePicture} />
+          <br/>
+          <Input color='tomato'
+          placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate}  />
+          <br />
+          <LoadScript googleMapsApiKey='AIzaSyDSbSrNsYCqg7GV5daI7wa7h3b1eu7zHPk' libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+                        <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+                          <Input
+                            type='text'
+                            color='tomato'
+                            placeholder='where'
+                            _placeholder={{ opacity: 0.4, color: 'inherit' }}
+                            width={'100%'}
+                            value={where}
+                            onChange={handleWhere}
+                          />
+                        </Autocomplete>
+                      </LoadScript>
+          <br/>
+          <Input
+            color='tomato'
+            placeholder='author name'
+            _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={user} onChange={handleByUser} />
+            <br />
+          <Input
+          color='tomato'
+          placeholder='link to social media'
+          _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={social} onChange={handleSocial} />
+          <br/>
+          <Input
+          color='tomato'
+          placeholder='type the secret key'
+          _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={keyAut} onChange={handleKeyAut} />
 
+          <br/>
+          <Button
+            type='submit'
+            size='md'
+            height='48px'
+            width='200px'
+            border='2px'
+            borderColor='tomato'
+            backgroundColor={'white'}
+        
+            >
+            UPDATE EVENT
+          </Button>
 
-  <Input
-  color='tomato'
-  placeholder='event title'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={title} onChange={handleTitle} />
-
-  <br />
-
-  <Input
-  color='tomato'
-  placeholder='event description'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={description} onChange={handleDescriprion} />
-
-  <br/>
-
-  <Input
-    type='text'
-    color='tomato'
-    placeholder='genre'
-    _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={genre} onChange={handleGenre} />
-
-    <br/>
-
-  <Input
-  color='tomato'
-  placeholder='picture url'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'}  value={picture} onChange={handlePicture} />
-
-  <br/>
-
-
-  <Input color='tomato'
-  placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate}  />
-  <br />
-
-  <LoadScript googleMapsApiKey='AIzaSyDSbSrNsYCqg7GV5daI7wa7h3b1eu7zHPk' libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
-                <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
-                  <Input
-                    type='text'
-                    color='tomato'
-                    placeholder='where'
-                    _placeholder={{ opacity: 0.4, color: 'inherit' }}
-                    width={'100%'}
-                    value={where}
-                    onChange={handleWhere}
-                  />
-                </Autocomplete>
-              </LoadScript>
-
-  <br/>
-
-  <Input
-    color='tomato'
-    placeholder='author name'
-    _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={user} onChange={handleByUser} />
-
-    <br />
-
-  <Input
-  color='tomato'
-  placeholder='link to social media'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={social} onChange={handleSocial} />
-
-  <br/>
-  <Input
-  color='tomato'
-  placeholder='type the secret key'
-  _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={keyAut} onChange={handleKeyAut} />
-
-  <br/>
-
-  <Button
-    type='submit'
-    size='md'
-    height='48px'
-    width='200px'
-    border='2px'
-    borderColor='tomato'
-    backgroundColor={'white'}
-    >
-    UPDATE EVENT
-  </Button>
-
-
-
-</form>
- <Button
-  type='submit'
-size='md'
-height='48px'
-width='200px'
-border='2px'
-borderColor='tomato'
-backgroundColor={'white'}
-onClick={handleDeleteEvent}
->
- DELETE EVENT
-</Button> 
-
-
-  </div>
+          <Button
+            type='submit'
+          size='md'
+          height='48px'
+          width='200px'
+          border='2px'
+          borderColor='tomato'
+          backgroundColor={'white'}
+          onClick={handleDeleteEvent}
+          >
+          DELETE EVENT
+          </Button> 
+        </form>
 
 <div>
 
-  <Card maxW='sm'>
-<CardBody>
-<Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
-  <Image
-    src={picture}
-    borderRadius='none'
-  />
-  <Stack mt='6' spacing='3'>
-    <Heading color='tomato' size='xl'>{title}</Heading>
-    <Text>
-      {description}
-    </Text>
-    <Text>
-      {social}
-    </Text>
-    <Text color='black' fontSize='2xl'>
-      {date}
-    </Text>
-    <Text color='black' fontSize='2xl'>
-      {where}
-    </Text>
-  </Stack>
-</CardBody>
-<Divider />
-<CardFooter>
-  <ButtonGroup spacing='2'>
- 
-  </ButtonGroup>
-</CardFooter>
-</Card>
-</div>
+        <Card maxW='lg'>
+      <CardBody>
+      <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
+        <Image
+          src={picture}
+          borderRadius='none'
+        />
+        <Stack mt='6' spacing='3'>
+          <Heading color='tomato' size='xl'>{title}</Heading>
+          <Text>
+            {description}
+          </Text>
+          <Text>
+            {social}
+          </Text>
+          <Text color='black' fontSize='2xl'>
+            {date}
+          </Text>
+          <Text color='black' fontSize='2xl'>
+            {where}
+          </Text>
+        </Stack>
+      </CardBody>
+      <Divider />
+      <CardFooter>
+        <ButtonGroup spacing='2'>
+      
+        </ButtonGroup>
+      </CardFooter>
+      </Card>
+      </div>
+    </>
 
-
-  </div>
 )}
 
 export default EditProject

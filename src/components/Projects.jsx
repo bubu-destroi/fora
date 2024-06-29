@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState, useContext } from "react"
-import {  useParams, useNavigate } from 'react-router-dom'
+import {  useParams } from 'react-router-dom'
 import {  SimpleGrid} from '@chakra-ui/react'
 import {Box, Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, Center } from '@chakra-ui/react'
 import { EventsContext } from "../context/Events.context"
@@ -10,7 +10,7 @@ const Projects  = () =>{
     // const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
     const {filter, date} = useParams()
-    const navigate = useNavigate()
+    //const navigate = useNavigate()
     
 
     const filterToday = events => {
@@ -134,7 +134,7 @@ const Projects  = () =>{
                     <>
                     <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
-                    <Card maxW='lg'>
+                    <Card maxW='lg' >
                         <CardBody>
                         <Box display="flex" justifyContent="center" alignItems="center" >
                             <Box 
