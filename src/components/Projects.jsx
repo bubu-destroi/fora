@@ -72,6 +72,37 @@ const Projects  = () =>{
         
         }
  */
+        const filterFromToday = events => {
+            const todayDate = new Date();
+            todayDate.setHours(0, 0, 0, 0);
+    
+            const filteredEvents = events.filter(event => {
+                if (!event.date) {
+                    return false;
+                }
+    
+                const eventDate = new Date(event.date);
+                return eventDate >= todayDate;
+            });
+            const sortedEvents = filteredEvents.sort((a, b) => new Date(a.date) - new Date(b.date));
+            setFilteredEvents(sortedEvents);
+        };
+        const filterPast = events => {
+            const todayDate = new Date();
+            todayDate.setHours(0, 0, 0, 0);
+    
+            const filteredEvents = events.filter(event => {
+                if (!event.date) {
+                    return false;
+                }
+    
+                const eventDate = new Date(event.date);
+                return eventDate <= todayDate;
+            });
+            const sortedEvents = filteredEvents.sort((a, b) => new Date(b.date) - new Date(a.date))
+    
+            setFilteredEvents(sortedEvents);
+        };
 
     useEffect(()=>{
         console.log('mounting')
@@ -87,8 +118,12 @@ const Projects  = () =>{
                 }else if(filter === 'when'){
                     filterDate(events, date)
     
-                } if(filter==="all") {
-                    setFilteredEvents(events)
+                }else if(filter==="all") {
+                    
+
+                    filterFromToday(events)
+                }else if(filter === "past") {
+                    filterPast(events)
                 } 
 
             }catch (error) {
@@ -132,7 +167,7 @@ const Projects  = () =>{
             {filteredEvents.map(event => {
                 return( 
                     <>
-                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
+                    <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
                     <Card maxW='lg' >
                         <CardBody>

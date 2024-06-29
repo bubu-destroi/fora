@@ -7,11 +7,11 @@ const imgURL = 'https://www.telegraph.co.uk/multimedia/archive/02419/jobs0_3_241
 function Teapot() {
   return (
     <div>
-     <Center  height="80vh" flexDirection="column">
+     <Center  height="70vh" flexDirection="column">
      <Box width={'100%'}>
-      <Heading  color='tomato' size='4xl'>COMPU´ER SAYS NOEEEE</Heading>
+      <Heading  color='tomato' size='2xl'>COMPU´ER SAYS NOEEEE</Heading>
 
-      <Link pt={'20px'} to='/allevents'>
+      <Link pt={'20px'} to='/events/all'>
       <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
                                 src={imgURL}
@@ -21,7 +21,7 @@ function Teapot() {
                             />
                             </Box>
 
-      <Heading pt={'60px'} pb={"20px"}  color='tomato' size='4xl'>COMPU´ER SAYS YES?</Heading>
+      <Heading pt={'60px'} pb={"20px"}  color='tomato' size='2xl'>COMPU´ER SAYS YES?</Heading>
       </Link>
       </Box>
       </Center>

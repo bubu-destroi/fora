@@ -50,7 +50,9 @@ const LinkItems =  [
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/events/all' },
   { name: 'PLACE', type: 'place' },
-  { name: 'WHEN', to:'/events/when', type: 'date' } ]
+  { name: 'WHEN', to:'/events/when', type: 'date' },
+  {name: 'PAST EVENTS' , to: '/events/past'} 
+]
 
 
 
@@ -310,7 +312,7 @@ const SidebarWithHeader = () => {
           <Routes>
           <Route path='/' element={<AllProjects  />} ></Route>
           <Route path='/events/:filter' element={<Projects  />} ></Route>
-          <Route path='/events/:filter/:date' element={<Projects  />} ></Route>
+          <Route path='/events/:filter/:date' element={<Projects  />} ></Route> 
           {/* <Route path='/allevents' element={<Projects  />} ></Route> */}
           <Route path='/events/new' element={<AddProject  />} ></Route>
           <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>

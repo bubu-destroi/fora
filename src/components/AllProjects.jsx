@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useEffect, useState,useContext } from "react"
-import axios  from "axios"
+//import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
 import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
@@ -8,7 +8,8 @@ import { EventsContext } from "../context/Events.context"
 
 const AllProjects  = () =>{
     const {allEvents}= useContext(EventsContext)
-
+/*     const [filteredEvents, setFilteredEvents] = useState([])
+ */
 
     // const [events, setEvents] = useState([])
   
@@ -69,9 +70,29 @@ const AllProjects  = () =>{
     //     getAllEvents()
     // }, [])
    
+
+/*     useEffect(() =>{
+        filterFutureEvents(allEvents)
+    }, [allEvents])
+
+
+    const filterFutureEvents = (events) => {
+        const today = new Date()
+        today.setHours(0,0,0,0)
+
+        const futureEvents = events.filter(event => {
+            const eventDate = new Date(event.date)
+            console.log(`Event Date: ${eventDate}, Today: ${today}`)
+            return event.date >= today
+        })
+
+        setFilteredEvents(futureEvents)
+
+    } */
+
     return(
         <div>
-                    <Heading   pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
+        <Heading   pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
  
         <Link to={`/events/new`} >
                                     
@@ -86,7 +107,7 @@ const AllProjects  = () =>{
            
             {allEvents.map(event => {return( 
                     <>
-                    <SimpleGrid spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
+                    <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
 
                     <Card maxW='lg' 

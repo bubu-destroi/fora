@@ -118,7 +118,7 @@ function ProjectDetails() {
          </Box>
     
           <Button mt={6}>
-            <RouterLink to="/allevents">
+            <RouterLink to="/events/all">
               BACK TO EVENTS
             </RouterLink>
           </Button>
