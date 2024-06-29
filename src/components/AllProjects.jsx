@@ -71,7 +71,7 @@ const AllProjects  = () =>{
    
     return(
         <div>
-                    <Heading  pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
+                    <Heading   pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
  
         <Link to={`/events/new`} >
                                     

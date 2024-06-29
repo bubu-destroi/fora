@@ -48,7 +48,7 @@ const LinkItems =  [
 
   
   { name: 'TODAY', to: '/events/today' },
-  { name: 'ALL EVENTS', to: '/allevents' },
+  { name: 'ALL EVENTS', to: '/events/all' },
   { name: 'PLACE', type: 'place' },
   { name: 'WHEN', to:'/events/when', type: 'date' } ]
 
@@ -75,7 +75,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
   };
 
   const handlePlaceSearch = (event) => {
-    console.log('event-target')
     setSearch(event.target.value)
     filterEvents(event.target.value)
   }
@@ -310,12 +309,12 @@ const SidebarWithHeader = () => {
           <Route path='/' element={<AllProjects  />} ></Route>
           <Route path='/events/:filter' element={<Projects  />} ></Route>
           <Route path='/events/:filter/:date' element={<Projects  />} ></Route>
-          <Route path='/allevents' element={<AllProjects  />} ></Route>
+          {/* <Route path='/allevents' element={<Projects  />} ></Route> */}
           <Route path='/events/new' element={<AddProject  />} ></Route>
           <Route path='/allevents/:eventId' element={<ProjectDetails  />} ></Route>
           <Route path='/events/:eventId/editproject' element={<EditProject />} ></Route>
           <Route path='*' element={<Teapot  />} ></Route>
-          <Route path='/events/*' element={<Teapot  />} ></Route>
+          {/* <Route path='/events/*' element={<Teapot  />} ></Route> */}
 
           </Routes>
 

@@ -9,7 +9,7 @@ const Projects  = () =>{
     const {events}= useContext(EventsContext)
     // const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
-    const {filter, date, place} = useParams()
+    const {filter, date} = useParams()
     const navigate = useNavigate()
     
 
@@ -22,6 +22,10 @@ const Projects  = () =>{
         console.log(year, month, day)
 
         const filteredEvents = events.filter(event => {
+            if(!event.date) {
+                return false
+            }
+            
             const eventDate = new Date(event.date)
             const eventYear = eventDate.getFullYear()
             const eventMonth = eventDate.getMonth();
@@ -36,6 +40,7 @@ const Projects  = () =>{
         })
 
         setFilteredEvents(filteredEvents)
+
     }
 
     const filterDate = (events, selectedDate )=> {
@@ -79,21 +84,27 @@ const Projects  = () =>{
     
                 if(filter==='today') {
                     filterToday(events)
-                }else if(filter === 'when' && date){
+                }else if(filter === 'when'){
                     filterDate(events, date)
-                } else if(filter === 'place' && place) {
-                   setFilteredEvents(events, place)}
-                
-                else {
-                    navigate('/not-found')
-                }
+    
+                } if(filter==="all") {
+                    setFilteredEvents(events)
+                } 
 
             }catch (error) {
                 console.log('error fetching the events', error)
             }
         }
         filterEvents(events)
-    }, [filter, date, place])
+    }, [filter, date,events])
+
+    if(!filteredEvents.length) {
+        return (
+            <div>
+                <p>Not found</p>
+            </div>
+        )
+    }
    
     return(
         <div className="filteredEvents">
