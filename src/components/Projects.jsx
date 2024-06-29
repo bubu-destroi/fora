@@ -188,18 +188,18 @@ const Projects  = () =>{
                                     />
                             </Box>
                         </Box>
-                            <Stack mt='6' spacing='3'>
+                            <Stack mt='2' spacing='2'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
                             <Text>
                                 {event.description}
                             </Text>
-                            <Text>
+                            <Text color='tomato' fontSize='md' >
                                 {event.social}
                             </Text>
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='' fontSize='lg'>
                                 {event.date}
                             </Text>
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='tomato' fontSize='sm'>
                                 {event.where}
                             </Text>
                             </Stack>
@@ -212,22 +212,19 @@ const Projects  = () =>{
                             sx={{'& > button': {
                                 minW: '136px',},}} >
 
-                                <Button fontSize='xl' flex='1' variant='ghost' >
+                               {/*  <Button fontSize='xl' flex='1' variant='ghost' >
                                 save event
-                                </Button>
+                                </Button> */}
 
                             <Link to={`/allevents/${event.id}`} >
-                                <Button fontSize='xl' flex='1' variant='ghost'>
+                                <Button fontSize='md' flex='1' variant='ghost'>
                                 see details
                                 </Button>
                             </Link>
-
                         </CardFooter>
                         </Center>
                     </Card>
-
             </SimpleGrid>
-
                 </>)  })}
             </SimpleGrid>
         </div>

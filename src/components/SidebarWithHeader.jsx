@@ -99,7 +99,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+        <Text fontSize="2xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
           WHAT 
           IS 
           HAPPENING?
@@ -124,14 +124,14 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </NavItem>
         {showPlaceInput && link.name === 'PLACE' && (
             <Box p="4" mx="4">
-              <Input type="text" color='tomato' placeholder='' _placeholder={{ opacity: 0.4, color: 'inherit' }} value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
+              <Input borderColor='tomato' type="text" color='tomato' placeholder='' _placeholder={{ opacity: 0.4, color: 'inherit' }} value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
             </Box>
           )}
           </>
       ))} 
           {showDateInput && (<>
             <Box p="4" mx="4">
-              <Input type="date" value={selectedDate} onChange={handleDateChange} />
+              <Input borderColor='tomato' type="date" value={selectedDate} onChange={handleDateChange} />
             </Box>
             </>
           )}
@@ -251,8 +251,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   display={{ base: 'none', md: 'flex' }}
                   alignItems="center"
                   spacing="1px"
-                  ml="2">
-                  <Text fontSize="xl">username</Text>
+                  ml="2" 
+                 >
+                  <Text   fontSize="xl">username</Text>
                 
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
@@ -261,18 +262,19 @@ const MobileNav = ({ onOpen, ...rest }) => {
               </HStack>
             </MenuButton>
             <MenuList
-            fontSize="xl"
+            fontSize="md"
               bg={useColorModeValue('white')}
-              borderColor={useColorModeValue('white')}>
-              <MenuItem  >your profile</MenuItem>
+              borderColor={useColorModeValue('white')}
+              >
+              <MenuItem _hover={{ color: 'tomato' }} >your profile</MenuItem>
               <Link to='/events/new' >
               <MenuItem   >create event</MenuItem>
 
               </Link>
-              <MenuItem>saved events</MenuItem>
+              <MenuItem _hover={{ color: 'tomato' }} >saved events</MenuItem>
               <MenuDivider />
-              <MenuItem>log in</MenuItem>
-              <MenuItem>log out</MenuItem>
+              <MenuItem _hover={{ color: 'tomato' }} >log in</MenuItem>
+              <MenuItem _hover={{ color: 'tomato' }} >log out</MenuItem>
             </MenuList>
           </Menu>
         </Flex>

@@ -300,12 +300,12 @@ return (
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={keyAut} onChange={handleKeyAut} />
 
 
-          <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
+          <Stack direction={{ base: 'row', md: 'row', justifyContent: 'center' }} spacing={4}>
           <Button
             type='submit'
             size='md'
             height='48px'
-            width='200px'
+            width='150px'
             border='2px'
             borderColor='tomato'
             backgroundColor={'white'}
@@ -317,7 +317,7 @@ return (
             type='submit'
           size='md'
           height='48px'
-          width='200px'
+          width='150px'
           border='2px'
           borderColor='tomato'
           backgroundColor={'white'}
