@@ -35,7 +35,7 @@ function ProjectDetails() {
     return (
       <>
 
-      <Center  height="130vh" flexDirection="column">
+      <Center  maxHeight="130vh" minHeight="60vh" flexDirection="column">
         <Box width={'100%'}>
         {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
     
