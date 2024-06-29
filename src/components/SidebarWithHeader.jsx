@@ -20,8 +20,6 @@ import {
 
 } from '@chakra-ui/react'
 import {
- /*  FiStar,
-  FiSettings, */
   FiMenu,
   FiChevronDown,
 
@@ -177,9 +175,9 @@ const MobileNav = ({ onOpen, ...rest }) => {
         <Link to='/events/today' >
         <Image
           src={foraLogo}
-          width={'700px'}
+          width={'550px'}
           height={'auto'}
-          pl={'40px'}
+          pl={'0px'}
         />
         </Link>
       </Box>
@@ -193,7 +191,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   size={'lg'}
                   src={perfilLogo} 
                 borderRadius={'0px'}
-                width = {'60px'}
+                width = {'50px'}
                 left = {'-10px'}
                 />
                 <VStack

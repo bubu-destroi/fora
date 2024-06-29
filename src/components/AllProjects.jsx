@@ -69,12 +69,12 @@ const AllProjects  = () =>{
    
     return(
         <div>
-                    <Heading  pb={"20px"}  color='tomato' size='4xl'>ALL EVENTS</Heading>
+                    <Heading  pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
  
         <Link to={`/events/new`} >
                                     
              <Button pt={"20px"} pb={"20px"} flex='1' variant='ghost' >
-                <Text color='tomato' fontSize='2xl'>ADD A NEW EVENT</Text>
+                <Text color='tomato' fontSize='xl'>CREATE A NEW EVENT</Text>
              </Button>
 
         </Link>
