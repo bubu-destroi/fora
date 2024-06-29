@@ -49,9 +49,9 @@ const LinkItems =  [
   
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/events/all' },
+  {name: 'PAST EVENTS' , to: '/events/past'}, 
   { name: 'PLACE', type: 'place' },
-  { name: 'WHEN', to:'/events/when', type: 'date' },
-  {name: 'PAST EVENTS' , to: '/events/past'} 
+  { name: 'WHEN', to:'/events/when', type: 'date' }
 ]
 
 
@@ -99,7 +99,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
       h="full"
       {...rest}>
       <Flex h="40" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+        <Text fontSize="xl" fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
           WHAT 
           IS 
           HAPPENING?
@@ -124,15 +124,16 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </NavItem>
         {showPlaceInput && link.name === 'PLACE' && (
             <Box p="4" mx="4">
-              <Input type="text" value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
+              <Input type="text" color='tomato' placeholder='' _placeholder={{ opacity: 0.4, color: 'inherit' }} value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
             </Box>
           )}
           </>
       ))} 
-          {showDateInput && (
+          {showDateInput && (<>
             <Box p="4" mx="4">
               <Input type="date" value={selectedDate} onChange={handleDateChange} />
             </Box>
+            </>
           )}
         </Box>
 

@@ -6,7 +6,7 @@ import { Input} from '@chakra-ui/react'
 import { LoadScript, Autocomplete } from '@react-google-maps/api';
 
 
-import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup } from '@chakra-ui/react'
+import { Card, CardBody, CardFooter, Image, Stack, Heading, Text, Divider, Button, ButtonGroup, Box, Flex } from '@chakra-ui/react'
 
 import { EventsContext } from "../context/Events.context";
 
@@ -25,6 +25,7 @@ const EditProject = () => {
   const [genre, setGenre] = useState('')
   const [secret_key, setSecret_key] = useState('')
   const [keyAut, setKeyAut] = useState('')
+  const [status, setStatus] = useState('');
   
   const navigate = useNavigate()
 
@@ -69,9 +70,9 @@ const EditProject = () => {
                     console.log("error", error);
                   }
                 
-                  }else{ return(
-                    <Text>WRONG KEY, TRY AGAIN</Text>)
-                      }
+                  }else {
+                    setStatus("Wrong key");
+                  }
                     }
 
               const handleDeleteEvent = async () => {                    //  <== ADD
@@ -90,8 +91,9 @@ const EditProject = () => {
                       console.log('error',error)
                   }
                 
-                }else { 
-                  console.log('wrong key')
+                }else {
+                  setStatus("Wrong key");
+                
                 }
   
 
@@ -239,33 +241,35 @@ const EditProject = () => {
 
 return (
  <>
-
-           <form onSubmit={handleFormSubmit} > 
-<Text opacity= '0.9' as='b' fontSize='200%' color='tomato'>EDIT EVENT</Text>
+   <Flex p={{ base: 4, md: 8 }} direction={{ base: "column", md: "row" }} gap={8}>
+   <Box flex={{base: "1", md: "50%"}}>
+      <form onSubmit={handleFormSubmit} > 
+          <Text opacity= '0.9' as='b' fontSize='2xl' color='tomato'>EDIT EVENT</Text>
+          <Stack spacing={0}>
           <Input
           color='tomato'
           placeholder='event title'
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={title} onChange={handleTitle} />
-          <br />
+         
           <Input
           color='tomato'
           placeholder='event description'
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={description} onChange={handleDescriprion} />
-          <br/>
+    
           <Input
             type='text'
             color='tomato'
             placeholder='genre'
             _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={genre} onChange={handleGenre} />
-            <br/>
+
           <Input
           color='tomato'
           placeholder='picture url'
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'}  value={picture} onChange={handlePicture} />
-          <br/>
+
           <Input color='tomato'
           placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate}  />
-          <br />
+
           <LoadScript googleMapsApiKey='AIzaSyDSbSrNsYCqg7GV5daI7wa7h3b1eu7zHPk' libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
                         <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
                           <Input
@@ -279,23 +283,24 @@ return (
                           />
                         </Autocomplete>
                       </LoadScript>
-          <br/>
+          
           <Input
             color='tomato'
             placeholder='author name'
             _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={user} onChange={handleByUser} />
-            <br />
+  
           <Input
           color='tomato'
           placeholder='link to social media'
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={social} onChange={handleSocial} />
-          <br/>
+  
           <Input
           color='tomato'
           placeholder='type the secret key'
           _placeholder={{ opacity: 0.4, color: 'inherit' } } width={'100%'} value={keyAut} onChange={handleKeyAut} />
 
-          <br/>
+
+          <Stack direction={{ base: 'column', md: 'row' }} spacing={4}>
           <Button
             type='submit'
             size='md'
@@ -304,7 +309,6 @@ return (
             border='2px'
             borderColor='tomato'
             backgroundColor={'white'}
-        
             >
             UPDATE EVENT
           </Button>
@@ -321,29 +325,31 @@ return (
           >
           DELETE EVENT
           </Button> 
+          </Stack>
+            {status && <Text color="red">{status}</Text>}
+          </Stack>
         </form>
+        </Box>
 
-<div>
-
+<Box flex={{base: "1", md: "50%"}} mt={{base:4, md:0}}>
+      <Text opacity= '0.9' as='b' fontSize='2xl' color='tomato'>PREVIEW</Text>
         <Card maxW='lg'>
       <CardBody>
-      <Text opacity= '0.4' as='b' fontSize='200%' color='tomato'>PREVIEW</Text>
-        <Image
-          src={picture}
-          borderRadius='none'
-        />
-        <Stack mt='6' spacing='3'>
-          <Heading color='tomato' size='xl'>{title}</Heading>
+          <Box width='260px' height='260px' overflow='hidden' borderRadius='none' display='flex' justifyContent='center' alignItems='center'>
+            <Image src={picture} borderRadius='none' margin='0' />
+          </Box>
+        <Stack mt='1' spacing='1'>
+          <Heading color='tomato' size='lg'>{title}</Heading>
           <Text>
             {description}
           </Text>
           <Text>
             {social}
           </Text>
-          <Text color='black' fontSize='2xl'>
+          <Text color='black' fontSize='xl'>
             {date}
           </Text>
-          <Text color='black' fontSize='2xl'>
+          <Text color='black' fontSize='md'>
             {where}
           </Text>
         </Stack>
@@ -355,7 +361,9 @@ return (
         </ButtonGroup>
       </CardFooter>
       </Card>
-      </div>
+      </Box>
+      </Flex>
+
     </>
 
 )}
