@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom"
-import { useContext } from "react"
+import { useContext , useEffect, useState} from "react"
 //import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
 import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
 import { EventsContext } from "../context/Events.context"
 
-const AllProjects  = () =>{
-    const {allEvents}= useContext(EventsContext)
-    
+const AllProjects  = ({search, place}) =>{
+    const {events}= useContext(EventsContext)
+    const [filteredEvents, setFilteredEvents] = useState([])
 /*     const [filteredEvents, setFilteredEvents] = useState([])
  */
 
@@ -91,6 +91,26 @@ const AllProjects  = () =>{
 
     } */
 
+        useEffect(() => {
+            let filtered = events
+            if(search){
+                filtered = filtered.filter( event => {
+                  event.title.toLowerCase().includes(search)
+                  event.description.toLowerCase().includes(search)
+                  event.genre.toLowerCase().includes(search)
+                  event.user.toLowerCase().includes(search)
+                  event.where.toLowerCase().includes(search)
+                  event.social.toLowerCase().includes(search)
+                })
+                setFilteredEvents(filtered)
+            }
+            if (place) {
+                filtered = filtered.filter(event=>{
+                    event.where.toLowerCase().includes(place) })
+            }
+            setFilteredEvents(filtered)
+        }, [events, search, place])
+
     return(
         <div>
         <Heading   pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
@@ -107,9 +127,9 @@ const AllProjects  = () =>{
             <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
            
            
-            {allEvents.map(event => {return( 
+            {filteredEvents.map(event => {return( 
                     <>
-                    
+
                     <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
 
@@ -142,6 +162,11 @@ const AllProjects  = () =>{
                             <Text>
                                 {event.description}
                             </Text>
+                            
+                            <Text color='tomato'>
+                                {event.genre}
+                            </Text>
+
                             <Text>
                                 {event.social}
                             </Text>

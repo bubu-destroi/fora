@@ -59,7 +59,7 @@ const LinkItems =  [
 
 
 const SidebarContent = ({ onClose, ...rest }) => {
-const {filterEvents}= useContext(EventsContext)
+const {filterEvents, events, filterSearch}= useContext(EventsContext)
   const [selectedDate, setSelectedDate] = useState('');
   const [place, setPlace] = useState('')
   const [search, setSearch] = useState('');
@@ -85,7 +85,8 @@ const {filterEvents}= useContext(EventsContext)
     const searchTerm = event.target.value.toLowerCase();
     console.log(searchTerm)
     setSearch(searchTerm);
-    filterEvents(searchTerm);
+    filterSearch(searchTerm)
+    events(searchTerm)
   };
 
 
