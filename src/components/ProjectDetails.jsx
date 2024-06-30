@@ -93,16 +93,16 @@ function ProjectDetails() {
                             sx={{'& > button': {
                                 minW: '136px',},}} >
                                 
-                                <Button fontSize='lg' flex='1' variant='ghost' >
+                                {/* <Button fontSize='lg' flex='1' variant='ghost' >
                                 save event
                                 </Button>
-                               
+                                */}
 
-                            <Link to={`/allevents/${singleEvent.id}`} >
+                            {/* <Link to={`/allevents/${singleEvent.id}`} >
                                 <Button fontSize='lg' flex='1' variant='ghost'>
                                 more events by {singleEvent.user}
                                 </Button>
-                            </Link>
+                            </Link> */}
 
                             <Link to={`/events/${singleEvent.id}/editproject`} >
                                 <Button fontSize='xl' flex='1' variant='ghost'>

@@ -103,11 +103,13 @@ const AllProjects  = () =>{
 
         </Link>
 
-            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
+
+            <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
            
            
             {allEvents.map(event => {return( 
                     <>
+                    
                     <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
 

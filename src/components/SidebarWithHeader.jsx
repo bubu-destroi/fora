@@ -12,7 +12,7 @@ import {
   useDisclosure,
   Menu,
   MenuButton,
-  MenuDivider,
+  //MenuDivider,
   MenuItem,
   MenuList,
   Image,
@@ -305,8 +305,8 @@ const MobileNav = ({ onOpen, ...rest }) => {
                   spacing="1px"
                   ml="2" 
                  >
-                  <Text   fontSize="xl">username</Text>
-                
+                 {/*  <Text   fontSize="xl">username</Text>
+                 */}
                 </VStack>
                 <Box display={{ base: 'none', md: 'flex' }}>
                   <FiChevronDown />
@@ -318,15 +318,15 @@ const MobileNav = ({ onOpen, ...rest }) => {
               bg={useColorModeValue('white')}
               borderColor={useColorModeValue('white')}
               >
-              <MenuItem _hover={{ color: 'tomato' }} >your profile</MenuItem>
+              {/* <MenuItem _hover={{ color: 'tomato' }} >your profile</MenuItem> */}
               <Link to='/events/new' >
               <MenuItem   >create event</MenuItem>
 
               </Link>
-              <MenuItem _hover={{ color: 'tomato' }} >saved events</MenuItem>
+             {/*  <MenuItem _hover={{ color: 'tomato' }} >saved events</MenuItem>
               <MenuDivider />
               <MenuItem _hover={{ color: 'tomato' }} >log in</MenuItem>
-              <MenuItem _hover={{ color: 'tomato' }} >log out</MenuItem>
+              <MenuItem _hover={{ color: 'tomato' }} >log out</MenuItem> */}
             </MenuList>
           </Menu>
         </Flex>
@@ -366,7 +366,7 @@ const SidebarWithHeader = () => {
 
           <Routes>
           <Route path='/' element={<AllProjects/>} ></Route>
-          <Route path='/events/all' element={<Projects filter='all'  />} ></Route>
+          {/* <Route path='/events/all' element={<Projects  />} ></Route> */}
           <Route path='/events/:filter' element={<Projects  />} ></Route>
           <Route path='/events/:filter/:date' element={<Projects  />} ></Route> 
           {/* <Route path='/allevents' element={<Projects  />} ></Route> */}

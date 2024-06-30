@@ -37,7 +37,7 @@ const Projects  = () =>{
             if(year === eventYear && month === eventMonth && day === eventDay) {
                 return true
             }else{
-                setFilteredEvents(events)
+                setFilteredEvents
             }
     
         })
@@ -167,7 +167,7 @@ const Projects  = () =>{
 
             </Link> */}
 
-            <SimpleGrid spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
+            <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
             {filteredEvents.map(event => {
                 return( 
                     <>
