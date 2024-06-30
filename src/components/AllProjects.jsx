@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useEffect, useState,useContext } from "react"
+import { useContext } from "react"
 //import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
@@ -159,11 +159,11 @@ const AllProjects  = () =>{
                             flexWrap='wrap'
                             sx={{'& > button': {
                                 minW: '136px',},}} >
-
+{/* 
                                 <Button fontSize='lg' flex='1' variant='ghost' >
                                 save event
                                 </Button>
-
+ */}
                             <Link to={`/allevents/${event.id}`} >
                                 <Button fontSize='lg' flex='1' variant='ghost'>
                                 see details

@@ -162,10 +162,10 @@ const {getEvents} = useContext(EventsContext)
                       {title}
                     </Heading>
                     <Text fontSize='md'>{description}</Text>
-                    <Text fontSize='md'>{genre}</Text>
+                    <Text fontSize='md'  >{genre}</Text>
                     
                     <Text>{social}</Text>
-                    <Text color='black' fontSize='lg'>
+                    <Text color='black' fontSize='lg' >
                       {date}
                     </Text>
                     <Text color='tomato' fontSize='sm'>
@@ -178,6 +178,7 @@ const {getEvents} = useContext(EventsContext)
                   <ButtonGroup spacing='2'></ButtonGroup>
                 </CardFooter>
               </Card>
+              
             </div>
           </SimpleGrid>
         </AbsoluteCenter>
