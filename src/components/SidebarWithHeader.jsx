@@ -47,6 +47,7 @@ const LinkItems =  [
 
 
   
+  { name: 'SEARCH', type: 'input' },
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/events/all' },
   {name: 'PAST EVENTS' , to: '/events/past'}, 
@@ -58,13 +59,13 @@ const LinkItems =  [
 
 
 const SidebarContent = ({ onClose, ...rest }) => {
-  const {filterEvents}= useContext(EventsContext)
-
-
+const {filterEvents}= useContext(EventsContext)
   const [selectedDate, setSelectedDate] = useState('');
+  const [place, setPlace] = useState('')
   const [search, setSearch] = useState('');
   const [showDateInput, setShowDateInput] = useState(false);
   const [showPlaceInput, setShowPlaceInput] = useState(false);
+  const [showSearchInput, setShowSearchInput] = useState(false)
 
   
   const navigate = useNavigate()
@@ -77,15 +78,20 @@ const SidebarContent = ({ onClose, ...rest }) => {
   };
 
   const handlePlaceSearch = (event) => {
-    setSearch(event.target.value)
+    setPlace(event.target.value)
     filterEvents(event.target.value)
-
-
   }
+  const handleSearchChange = (event) => {
+    const searchTerm = event.target.value.toLowerCase();
+    console.log(searchTerm)
+    setSearch(searchTerm);
+    filterEvents(searchTerm);
+  };
+
 
   useEffect(() => {
 
-  }, [search])
+  }, [search, place])
 
   return (
     <Box
@@ -108,39 +114,66 @@ const SidebarContent = ({ onClose, ...rest }) => {
       </Flex>
          {LinkItems.map((link) => (
           <>
-
+            
           <NavItem
           fontSize={"xl"}
           key={link.name}
           link={link}
           showDateInput={showDateInput}
           showPlaceInput={showPlaceInput}
+          showSearchInput={showSearchInput}
           setShowDateInput={setShowDateInput}
           handleDateChange={handleDateChange}
           setShowPlaceInput={setShowPlaceInput}
           handlePlaceSearch={handlePlaceSearch}
+          setShowSearchInput={setShowSearchInput}
           onClose={onClose}>
           {link.name}
         </NavItem>
         {showPlaceInput && link.name === 'PLACE' && (
             <Box p="4" mx="4">
-              <Input borderColor='tomato' type="text" color='tomato' placeholder='' _placeholder={{ opacity: 0.4, color: 'inherit' }} value={search} onChange={handlePlaceSearch} onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
+              <Input borderColor='tomato' 
+              type="text" color='tomato' 
+              placeholder='' 
+              _placeholder={{ opacity: 0.4, color: 'inherit' }} 
+              value={place} 
+              onChange={handlePlaceSearch} 
+              onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
+            </Box>
+          )}
+          {showSearchInput && link.name === 'SEARCH' && (
+            <Box p="4" mx="4">
+              <Input
+                borderColor='tomato'
+                type="text"
+                color='tomato'
+                placeholder='search'
+                _placeholder={{ opacity: 0.4, color: 'inherit' }}
+                value={search}
+                onChange={handleSearchChange}
+                onKeyDown={(e) => { if (e.key === 'Enter') onClose(); }}
+              />
             </Box>
           )}
           </>
+
       ))} 
           {showDateInput && (<>
             <Box p="4" mx="4">
-              <Input borderColor='tomato' type="date" value={selectedDate} onChange={handleDateChange} />
-            </Box>
+              <Input borderColor='tomato' 
+              type="date" 
+              value={selectedDate} 
+              onChange={handleDateChange} />
+            </Box>            
             </>
           )}
         </Box>
+      )  }
+      
 
-      )
-    }
 
-    const NavItem = ({ link, showDateInput, setShowDateInput,onClose,showPlaceInput, setShowPlaceInput }) => {
+
+    const NavItem = ({ link, showDateInput, setShowDateInput,onClose,showPlaceInput, setShowPlaceInput, showSearchInput, setShowSearchInput }) => {
   if (link.type === 'date') {
     return (
       <Box mt="4">
@@ -178,8 +211,27 @@ const SidebarContent = ({ onClose, ...rest }) => {
         </Flex>
       </Box>
     );
-  } else {
+  } else if (link.type === 'input') {
     return (
+      <Box mt="4">
+        <Flex
+          align="center"
+          p="4"
+          mx="4"
+          borderRadius="none"
+          role="group"
+          cursor="pointer"
+          onClick={() => { setShowSearchInput(!showSearchInput); }}
+          _hover={{ color: 'red' }}
+        >
+          <Text fontSize="xl">{link.name}</Text>
+        </Flex>
+      </Box>
+    );
+  } 
+  else {
+    return (
+      
       <Box mt="4">
         <Flex
           align="center"
@@ -313,7 +365,8 @@ const SidebarWithHeader = () => {
         justifyContent="center">
 
           <Routes>
-          <Route path='/' element={<AllProjects  />} ></Route>
+          <Route path='/' element={<AllProjects/>} ></Route>
+          <Route path='/events/all' element={<Projects filter='all'  />} ></Route>
           <Route path='/events/:filter' element={<Projects  />} ></Route>
           <Route path='/events/:filter/:date' element={<Projects  />} ></Route> 
           {/* <Route path='/allevents' element={<Projects  />} ></Route> */}

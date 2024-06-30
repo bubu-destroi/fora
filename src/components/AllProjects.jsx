@@ -8,6 +8,7 @@ import { EventsContext } from "../context/Events.context"
 
 const AllProjects  = () =>{
     const {allEvents}= useContext(EventsContext)
+    
 /*     const [filteredEvents, setFilteredEvents] = useState([])
  */
 

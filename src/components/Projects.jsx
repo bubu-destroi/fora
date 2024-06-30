@@ -10,8 +10,9 @@ const Projects  = () =>{
     // const [events, setEvents] = useState([])
     const [filteredEvents, setFilteredEvents] = useState([])
     const {filter, date} = useParams()
-    //const navigate = useNavigate()
+   // const navigate = useNavigate()
     
+
 
     const filterToday = events => {
 
@@ -35,6 +36,8 @@ const Projects  = () =>{
             
             if(year === eventYear && month === eventMonth && day === eventDay) {
                 return true
+            }else{
+                setFilteredEvents(events)
             }
     
         })
@@ -120,7 +123,6 @@ const Projects  = () =>{
     
                 }else if(filter==="all") {
                     
-
                     filterFromToday(events)
                 }else if(filter === "past") {
                     filterPast(events)
@@ -137,6 +139,8 @@ const Projects  = () =>{
         return (
             <div>
                 <p>Not found</p>
+                
+            
             </div>
         )
     }

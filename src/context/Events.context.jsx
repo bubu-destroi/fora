@@ -21,11 +21,32 @@ const EventsProviderWrapper = props =>{ //can deconstruct the props eg: {{childr
         }
     }
 
-    const filterEvents = (search) => {
-        const filteredEvents = allEvents.filter(event=> event.where && event.where.toLowerCase().includes(search.toLowerCase()))
+    const filterEvents = (filters) => {
+        let filteredEvents = [...allEvents]
 
+        if(filters.search){
+
+            const searchTerm = filters.search.toLowerCase();
+             filteredEvents = filteredEvents.filter(event => 
+              (event.where && event.where.toLowerCase().includes(searchTerm)) ||
+              (event.title && event.title.toLowerCase().includes(searchTerm)) ||
+              (event.description && event.description.toLowerCase().includes(searchTerm))||
+              (event.genre && event.genre.toLowerCase().includes(searchTerm)) ||
+              (event.user && event.user.toLowerCase().includes(searchTerm))
+            );
+        }
+        if(filters.place){
+            const placeTerm = filters.place.toLowerCase()
+            filteredEvents = filteredEvents.filter((event) =>
+                event.where.toLowerCase().includes(placeTerm)
+              )
+
+        }
         setEvents(filteredEvents)
+
     }
+
+
 
     useEffect(() => {
 getEvents()
