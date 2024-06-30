@@ -343,13 +343,14 @@ return (
           <Text>
             {description}
           </Text>
-          <Text>
+          <Text fontSize='md'>{genre}</Text>
+          <Text color='tomato'>
             {social}
           </Text>
-          <Text color='black' fontSize='xl'>
+          <Text color='black' fontSize='lg'>
             {date}
           </Text>
-          <Text color='black' fontSize='md'>
+          <Text color='tomato' fontSize='sm'>
             {where}
           </Text>
         </Stack>

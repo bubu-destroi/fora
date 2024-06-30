@@ -31,7 +31,7 @@ const AddProject = () => {
   const [date, setDate] = useState('');
   const [where, setWhere] = useState('');
   const [social, setSocial] = useState('https://');
-  const [user, setUser] = useState('theme context here');
+  const [user, setUser] = useState('');
   const [genre, setGenre] = useState('');
   const [secret_key, setSecret_key] = useState('');
 const {getEvents} = useContext(EventsContext)
@@ -107,12 +107,12 @@ const {getEvents} = useContext(EventsContext)
   };
 
   return (
-    <Center display={'flex'} h={'80vh'}>
+    <Center display={'flex'} h={'100vh'}>
       <Box position='relative'>
         <AbsoluteCenter axis='both'>
           <SimpleGrid spacing={6} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
             <form onSubmit={handleSubmit}>
-              <Text opacity='0.9' as='b' fontSize='200%' color='tomato'> CREATE YOUR EVENT</Text>
+              <Text opacity='0.9' as='b' fontSize='xl' color='tomato'> CREATE YOUR EVENT</Text>
 
               <Input color='tomato' placeholder='event title' _placeholder={{ opacity: 0.4, color: 'inherit' }} width={'100%'} value={title} onChange={handleTitle} />
               <br />
@@ -142,7 +142,7 @@ const {getEvents} = useContext(EventsContext)
               <br />
               <Input type='url' color='tomato' placeholder='link to social media' _placeholder={{ opacity: 0.4, color: 'inherit' }} width={'100%'} value={social} onChange={handleSocial} />
               <br />
-              <Input color='tomato' placeholder='secret key (for later edit)' _placeholder={{ opacity: 0.4, color: 'inherit' }} width={'100%'} value={secret_key} onChange={handleSecret_key} />
+              <Input color='tomato' placeholder='secret key' _placeholder={{ opacity: 0.4, color: 'inherit' }} width={'100%'} value={secret_key} onChange={handleSecret_key} />
               <br />
               <Button type='submit' size='md' height='48px' width='200px' border='2px' borderColor='tomato' backgroundColor={'white'}>
                 create
@@ -150,7 +150,7 @@ const {getEvents} = useContext(EventsContext)
             </form>
             <div>
               <Card width='300px' maxW='md' variant='outline'>
-                <Text opacity='0.9' as='b' fontSize='200%' color='tomato'>
+                <Text opacity='0.9' as='b' fontSize='xl' color='tomato'>
                   PREVIEW
                 </Text>
                 <CardBody>
@@ -161,12 +161,14 @@ const {getEvents} = useContext(EventsContext)
                     <Heading color='tomato' size='lg'>
                       {title}
                     </Heading>
-                    <Text>{description}</Text>
+                    <Text fontSize='md'>{description}</Text>
+                    <Text fontSize='md'>{genre}</Text>
+                    
                     <Text>{social}</Text>
-                    <Text color='black' fontSize='2xl'>
+                    <Text color='black' fontSize='lg'>
                       {date}
                     </Text>
-                    <Text color='black' fontSize='2xl'>
+                    <Text color='tomato' fontSize='sm'>
                       {where}
                     </Text>
                   </Stack>

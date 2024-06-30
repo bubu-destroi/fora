@@ -41,7 +41,7 @@ function ProjectDetails() {
     
         {singleEvent &&  ( 
 
-                      <Card borderBottomRadius={"none"}  maxW='lg' >
+                      <Card borderBottomRadius={"none"}  maxW='lg' h={'100vh'} >
                         <CardBody borderBottomRadius={"none"} >
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
@@ -93,19 +93,19 @@ function ProjectDetails() {
                             sx={{'& > button': {
                                 minW: '136px',},}} >
                                 
-                                <Button fontSize='2xl' flex='1' variant='ghost' >
+                                <Button fontSize='lg' flex='1' variant='ghost' >
                                 save event
                                 </Button>
                                
 
                             <Link to={`/allevents/${singleEvent.id}`} >
-                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                <Button fontSize='lg' flex='1' variant='ghost'>
                                 more events by {singleEvent.user}
                                 </Button>
                             </Link>
 
                             <Link to={`/events/${singleEvent.id}/editproject`} >
-                                <Button fontSize='2xl' flex='1' variant='ghost'>
+                                <Button fontSize='xl' flex='1' variant='ghost'>
                                 EDIT THIS EVENT
                                 </Button>
                             </Link>
@@ -113,15 +113,15 @@ function ProjectDetails() {
                         </CardFooter>
                         
                         </Center>
-                    </Card>
-)}
-         </Box>
-    
           <Button mt={6}>
             <RouterLink to="/events/all">
               BACK TO EVENTS
             </RouterLink>
           </Button>
+                    </Card>
+)}
+         </Box>
+    
       </Center>
 
         </> 
