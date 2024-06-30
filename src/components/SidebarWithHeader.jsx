@@ -116,7 +116,7 @@ const {filterEvents}= useContext(EventsContext)
           <>
             
           <NavItem
-          fontSize={"xl"}
+          fontSize={"lg"}
           key={link.name}
           link={link}
           showDateInput={showDateInput}
@@ -206,7 +206,7 @@ const {filterEvents}= useContext(EventsContext)
           
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
-            <Text fontSize="xl">{link.name}</Text>
+            <Text fontSize="lg">{link.name}</Text>
           </Link>
         </Flex>
       </Box>
@@ -224,7 +224,7 @@ const {filterEvents}= useContext(EventsContext)
           onClick={() => { setShowSearchInput(!showSearchInput); }}
           _hover={{ color: 'red' }}
         >
-          <Text fontSize="xl">{link.name}</Text>
+          <Text fontSize="lg">{link.name}</Text>
         </Flex>
       </Box>
     );
@@ -245,7 +245,7 @@ const {filterEvents}= useContext(EventsContext)
           
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
-            <Text fontSize="xl">{link.name}</Text>
+            <Text fontSize="lg">{link.name}</Text>
           </Link>
         </Flex>
       </Box>
