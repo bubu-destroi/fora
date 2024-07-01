@@ -3,7 +3,7 @@ import { useContext , useEffect, useState} from "react"
 //import axios  from "axios"
 //import {  useNavigate, useParams } from 'react-router-dom'
 //import EventCard from './EventCard'
-import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image } from '@chakra-ui/react'
+import {Divider, Box,Stack, Card, CardBody, CardFooter, Button, Heading, Text, SimpleGrid, Image, Center } from '@chakra-ui/react'
 import { EventsContext } from "../context/Events.context"
 
 const AllProjects  = ({search, place}) =>{
@@ -124,7 +124,7 @@ const AllProjects  = ({search, place}) =>{
         </Link>
 
 
-            <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}>
+            <SimpleGrid  spacing={8} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}>
            
            
             {filteredEvents.map(event => {return( 
@@ -133,10 +133,8 @@ const AllProjects  = ({search, place}) =>{
                     <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
                     
 
-                    <Card maxW='lg' 
-                    
-                    >
-                        <CardBody>
+                    <Card maxW='lg'  borderRadius='none'>
+                        <CardBody p='1'>
                         <Box display="flex" justifyContent="center" alignItems="center" >
                             <Box 
                                 width="300px" 
@@ -146,14 +144,17 @@ const AllProjects  = ({search, place}) =>{
                                 display="flex" 
                                 justifyContent="center" 
                                 alignItems="center"
+                                p={'0'}
                                 >
                                 
-                            
+                                <Link to={`/allevents/${event.id}`} >
                                 <Image
                                     src={event.picture}
                                     borderRadius="none"
                                     margin="0"
+                                    p={'0'}
                                     />
+                                    </Link>
                             </Box>
                         </Box>
                             
@@ -163,13 +164,14 @@ const AllProjects  = ({search, place}) =>{
                                 {event.description}
                             </Text>
                             
-                            <Text color='tomato' fontSize='sm'>
+                            <Text color='tomato' fontSize='xs'>
                                 {event.genre}
                             </Text>
-
+                            <Link to={event.social} color="blue.500" target='_blank'>
                             <Text fontSize='sm'>
                                 {event.social}
                             </Text>
+                            </Link>
                             <Text color='tomato' fontSize='md'>
                                 {event.date}
                             </Text>
@@ -181,7 +183,7 @@ const AllProjects  = ({search, place}) =>{
                             </Stack>
                         </CardBody>
                         <Divider />
-
+                        <Center>
                         <CardFooter
                             justify='space-between'
                             flexWrap='wrap'
@@ -193,12 +195,13 @@ const AllProjects  = ({search, place}) =>{
                                 </Button>
  */}
                             <Link to={`/allevents/${event.id}`} >
-                                <Button fontSize='lg' flex='1' variant='ghost'>
+                                <Button fontSize='md' flex='1' variant='ghost' _hover={{ color: 'red' }} >
                                 see details
                                 </Button>
                             </Link>
 
                         </CardFooter>
+                        </Center>
                     </Card>
 
                        

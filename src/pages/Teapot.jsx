@@ -8,10 +8,9 @@ function Teapot() {
   return (
     <div>
      <Center  height="70vh" flexDirection="column">
-     <Box width={'100%'}>
-      <Heading  color='tomato' size='2xl'>COMPU´ER SAYS NOEEEE</Heading>
+     <Box width={'70%'}>
+      <Heading  color='tomato' size='xl'>COMPU´ER SAYS NOEEEE</Heading>
 
-      <Link pt={'20px'} to='/events/all'>
       <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
                                 src={imgURL}
@@ -20,9 +19,10 @@ function Teapot() {
                                 margin={'0'}
                             />
                             </Box>
-
-      <Heading pt={'60px'} pb={"20px"}  color='tomato' size='2xl'>COMPU´ER SAYS YES?</Heading>
+      <Link pt={'20px'} to='/events/all'>
+      <Heading pt={''} pb={"20px"}  color='tomato' size='xl'>COMPU´ER SAYS YES?</Heading>
       </Link>
+
       </Box>
       </Center>
 

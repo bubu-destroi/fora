@@ -167,15 +167,15 @@ const Projects  = () =>{
 
             </Link> */}
 
-            <SimpleGrid  spacing={4} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(4, 1fr)' }}> 
+            <SimpleGrid  spacing={8} templateColumns={{ base: 'repeat(1, 1fr)', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)'}}> 
             {filteredEvents.map(event => {
                 return( 
                     <>
                     <SimpleGrid key={event.id} spacing={4} templateColumns='repeat(auto-fit, minmax(200px, 1fr))'>
 
-                    <Card maxW='lg' >
-                        <CardBody>
-                        <Box display="flex" justifyContent="center" alignItems="center" >
+                    <Card maxW='lg' borderRadius='none' >
+                        <CardBody p='1'>
+                        <Box display="flex" justifyContent="center" alignItems="center" p='0' >
                             <Box 
                                 width="300px" 
                                 height="300px" 
@@ -184,25 +184,31 @@ const Projects  = () =>{
                                 display="flex" 
                                 justifyContent="center" 
                                 alignItems="center"
+                                pb='6'
                                 >
+                                <Link to={`/allevents/${event.id}`} >
                                 <Image
                                     src={event.picture}
                                     borderRadius="none"
                                     margin="0"
+                                    p={'0'}
                                     />
+                                    </Link>
                             </Box>
                         </Box>
-                            <Stack mt='2' spacing='3'>
-                            <Heading color='tomato' size='lg'>{event.title}</Heading>
+                            <Stack mt='6' spacing='3' p=''>
+                            <Heading color='tomato' size='md'>{event.title}</Heading>
                             <Text fontSize='sm'>
                                 {event.description}
                             </Text>
-                            <Text color='tomato' fontSize='sm'>
+                            <Text color='tomato' fontSize='xs'>
                                 {event.genre}
                             </Text>
+                            <Link to={event.social} color="blue.500" target='_blank'>
                             <Text color='' fontSize='sm' >
                                 {event.social}
                             </Text>
+                            </Link>
                             <Text color='tomato' fontSize='sm'>
                                 {event.date}
                             </Text>
@@ -211,7 +217,7 @@ const Projects  = () =>{
                             </Text>
                             </Stack>
                         </CardBody>
-                        <Divider />
+                        <Divider color={'rgba(255, 99, 71, 0.2)'}/>
                         <Center>
                         <CardFooter
                             justify='space-between'
@@ -224,7 +230,7 @@ const Projects  = () =>{
                                 </Button> */}
 
                             <Link to={`/allevents/${event.id}`} >
-                                <Button fontSize='md' flex='1' variant='ghost'>
+                                <Button fontSize='md' flex='1' variant='ghost' _hover={{ color: 'red' }}>
                                 see details
                                 </Button>
                             </Link>

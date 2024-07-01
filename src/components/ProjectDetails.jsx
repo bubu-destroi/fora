@@ -35,14 +35,14 @@ function ProjectDetails() {
     return (
       <>
 
-      <Center  maxHeight="130vh" minHeight="60vh" flexDirection="column">
+      <Center  maxHeight="130vh" minHeight="60vh" flexDirection="column" >
         <Box width={'100%'}>
         {!singleEvent && (<><Text>OOPS NO EVENT FOUND, TOO BAD </Text></>)}
     
         {singleEvent &&  ( 
 
-                      <Card borderBottomRadius={"none"}  maxW='lg' h={'100vh'} >
-                        <CardBody borderBottomRadius={"none"} >
+                      <Card borderBottomRadius={"none"}  maxW='lg' h={'100vh'}  border="none" boxShadow="none" >
+                        <CardBody borderBottomRadius={"none"} p='0' >
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
                                 src={singleEvent.picture}
@@ -87,7 +87,7 @@ function ProjectDetails() {
                         <Divider />
 
                         <Center>
-                        <CardFooter
+                        <CardFooter p={'0'}
                             justify='space-between'
                             flexWrap='wrap'
                             sx={{'& > button': {
@@ -105,7 +105,7 @@ function ProjectDetails() {
                             </Link> */}
 
                             <Link to={`/events/${singleEvent.id}/editproject`} >
-                                <Button fontSize='md' flex='1' variant='ghost'>
+                                <Button m={''} fontSize='md' flex='1' variant='tomato' _hover={{ color: 'red' }}>
                                 EDIT THIS EVENT
                                 </Button>
                             </Link>
@@ -113,7 +113,7 @@ function ProjectDetails() {
                         </CardFooter>
                         
                         </Center>
-          <Button mt='1'>
+          <Button mt='' variant={'tomato'} h={'20px'} pb={'20px'} pt={'10px'} _hover={{ color: 'red' }}>
             <RouterLink to="/events/all">
               BACK TO EVENTS
             </RouterLink>
