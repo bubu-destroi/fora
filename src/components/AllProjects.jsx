@@ -113,12 +113,12 @@ const AllProjects  = ({search, place}) =>{
 
     return(
         <div>
-        <Heading   pb={"20px"}  color='tomato' size='2xl'>ALL EVENTS</Heading>
+        <Heading   pb={"20px"}  color='tomato' size='xl'>ALL EVENTS</Heading>
  
         <Link to={`/events/new`} >
                                     
              <Button pt={"20px"} pb={"20px"} flex='1' variant='ghost' >
-                <Text color='tomato' fontSize='xl'>CREATE A NEW EVENT</Text>
+                <Text color='tomato' fontSize='lg'>CREATE A NEW EVENT</Text>
              </Button>
 
         </Link>
@@ -134,7 +134,7 @@ const AllProjects  = ({search, place}) =>{
                     
 
                     <Card maxW='lg' 
-                    //key={event.id}
+                    
                     >
                         <CardBody>
                         <Box display="flex" justifyContent="center" alignItems="center" >
@@ -158,22 +158,22 @@ const AllProjects  = ({search, place}) =>{
                         </Box>
                             
                             <Stack mt='6' spacing='3'>
-                            <Heading color='tomato' size='lg'>{event.title}</Heading>
-                            <Text>
+                            <Heading color='tomato' fontSize='lg'>{event.title}</Heading>
+                            <Text fontSize='sm'>
                                 {event.description}
                             </Text>
                             
-                            <Text color='tomato'>
+                            <Text color='tomato' fontSize='sm'>
                                 {event.genre}
                             </Text>
 
-                            <Text>
+                            <Text fontSize='sm'>
                                 {event.social}
                             </Text>
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='tomato' fontSize='md'>
                                 {event.date}
                             </Text>
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='tomato' fontSize='sm'>
                                 {event.where}
                             </Text>
                            

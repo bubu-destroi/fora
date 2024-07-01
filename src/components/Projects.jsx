@@ -148,12 +148,12 @@ const Projects  = () =>{
     return(
         <div className="filteredEvents">
 
-            <Heading pt={'0px'} pb={'10px'} color='tomato' size='2xl'>{filter}</Heading>
-            <Heading pt={'10px'} pb={'10px'} color='gray.600' size='2xl'>{date}</Heading>
+            <Heading pt={'0px'} pb={'10px'} color='tomato' size='xl'>{filter} events</Heading>
+            <Heading pt={'10px'} pb={'10px'} color='gray.600' size='xl'>{date}</Heading>
             <Link to={`/events/new`} >
                                                 
                 <Button flex='1' variant='ghost' >
-                     <Text color='tomato' fontSize='xl'>CREATE A NEW EVENT</Text>
+                     <Text color='tomato' fontSize='lg'>CREATE A NEW EVENT</Text>
                  </Button>
                        
              </Link>
@@ -192,15 +192,18 @@ const Projects  = () =>{
                                     />
                             </Box>
                         </Box>
-                            <Stack mt='2' spacing='2'>
+                            <Stack mt='2' spacing='3'>
                             <Heading color='tomato' size='lg'>{event.title}</Heading>
-                            <Text>
+                            <Text fontSize='sm'>
                                 {event.description}
                             </Text>
-                            <Text color='tomato' fontSize='md' >
+                            <Text color='tomato' fontSize='sm'>
+                                {event.genre}
+                            </Text>
+                            <Text color='' fontSize='sm' >
                                 {event.social}
                             </Text>
-                            <Text color='' fontSize='lg'>
+                            <Text color='tomato' fontSize='sm'>
                                 {event.date}
                             </Text>
                             <Text color='tomato' fontSize='sm'>

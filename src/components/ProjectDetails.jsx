@@ -52,21 +52,21 @@ function ProjectDetails() {
                             />
                             </Box>
                             <Stack mt='6' spacing='3'>
-                            <Heading color='tomato' size='2xl'>{singleEvent.title}</Heading>
+                            <Heading color='tomato' size='xl'>{singleEvent.title}</Heading>
 
-                            <Text fontSize={"2xl"}>
+                            <Text fontSize={"lg"}>
                                 {singleEvent.description}
                             </Text>
 
                             <Link to={singleEvent.social} color="blue.500" target='_blank'>
-                              <Text color="tomato" fontSize="2xl">{singleEvent.social}</Text>
+                              <Text color="tomato" fontSize="sm">{singleEvent.social}</Text>
                              
                             </Link>
                             
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='tomato' fontSize='md'>
                                 {singleEvent.date}
                             </Text>
-                            <Text color='tomato' fontSize='2xl'>
+                            <Text color='tomato' fontSize='md'>
                                 {singleEvent.where}
                             </Text>
 
@@ -74,13 +74,13 @@ function ProjectDetails() {
                             </Stack>
                         </CardBody>
                         <Divider />
-                        <Text color='tomato' fontSize='2xl'>
+                        <Text color='tomato' fontSize='md'>
                                 created by : {singleEvent.user}
                           
                         </Text>
                         <Divider />
                         
-                        <Text color='tomato' fontSize='2xl'>
+                        <Text color='tomato' fontSize='sm'>
                                {singleEvent.genre}
                           
                         </Text>
@@ -91,7 +91,7 @@ function ProjectDetails() {
                             justify='space-between'
                             flexWrap='wrap'
                             sx={{'& > button': {
-                                minW: '136px',},}} >
+                                minW: '100px',},}} >
                                 
                                 {/* <Button fontSize='lg' flex='1' variant='ghost' >
                                 save event
@@ -105,7 +105,7 @@ function ProjectDetails() {
                             </Link> */}
 
                             <Link to={`/events/${singleEvent.id}/editproject`} >
-                                <Button fontSize='xl' flex='1' variant='ghost'>
+                                <Button fontSize='md' flex='1' variant='ghost'>
                                 EDIT THIS EVENT
                                 </Button>
                             </Link>
@@ -113,7 +113,7 @@ function ProjectDetails() {
                         </CardFooter>
                         
                         </Center>
-          <Button mt={6}>
+          <Button mt='1'>
             <RouterLink to="/events/all">
               BACK TO EVENTS
             </RouterLink>
