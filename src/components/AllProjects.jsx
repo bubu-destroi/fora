@@ -182,7 +182,7 @@ const AllProjects  = ({search, place}) =>{
                             
                             </Stack>
                         </CardBody>
-                        <Divider />
+                        <Divider color={'rgba(255, 99, 71, 0.2)'} />
                         <Center>
                         <CardFooter
                             justify='space-between'

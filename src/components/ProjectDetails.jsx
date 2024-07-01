@@ -42,7 +42,7 @@ function ProjectDetails() {
         {singleEvent &&  ( 
 
                       <Card borderBottomRadius={"none"}  maxW='lg' h={'100vh'}  border="none" boxShadow="none" >
-                        <CardBody borderBottomRadius={"none"} p='0' >
+                        <CardBody borderBottomRadius={"none"} p='0' height={'auto'}>
                         <Box display="flex" justifyContent="center" alignItems="center">
                             <Image
                                 src={singleEvent.picture}
@@ -73,18 +73,18 @@ function ProjectDetails() {
 
                             </Stack>
                         </CardBody>
-                        <Divider />
-                        <Text color='tomato' fontSize='md'>
+                        <Divider color={'rgba(255, 99, 71, 0.2)'}/>
+                        <Text color='tomato' fontSize='md' m='2'>
                                 created by : {singleEvent.user}
                           
                         </Text>
-                        <Divider />
+                        <Divider color={'rgba(255, 99, 71, 0.2)'}/>
                         
-                        <Text color='tomato' fontSize='sm'>
+                        <Text color='tomato' m='2' fontSize='xs'>
                                {singleEvent.genre}
                           
                         </Text>
-                        <Divider />
+                        <Divider color={'rgba(255, 99, 71, 0.2)'} />
 
                         <Center>
                         <CardFooter p={'0'}
@@ -105,7 +105,7 @@ function ProjectDetails() {
                             </Link> */}
 
                             <Link to={`/events/${singleEvent.id}/editproject`} >
-                                <Button m={''} fontSize='md' flex='1' variant='tomato' _hover={{ color: 'red' }}>
+                                <Button mt='4'  fontSize='md' flex='1' variant='tomato' _hover={{ color: 'red' }}>
                                 EDIT THIS EVENT
                                 </Button>
                             </Link>
@@ -113,7 +113,7 @@ function ProjectDetails() {
                         </CardFooter>
                         
                         </Center>
-          <Button mt='' variant={'tomato'} h={'20px'} pb={'20px'} pt={'10px'} _hover={{ color: 'red' }}>
+          <Button m='9' mb='20' variant={'tomato'} h={'20px'} pb={'20px'} pt={'10px'} _hover={{ color: 'red' }}>
             <RouterLink to="/events/all">
               BACK TO EVENTS
             </RouterLink>
