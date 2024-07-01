@@ -50,7 +50,7 @@ const LinkItems =  [
   { name: 'SEARCH', type: 'input' },
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/events/all' },
-  {name: 'PAST EVENTS' , to: '/events/past'}, 
+  { name: 'PAST EVENTS' , to: '/events/past'}, 
   { name: 'PLACE', type: 'place' },
   { name: 'WHEN', to:'/events/when', type: 'date' }
 ]
@@ -117,7 +117,8 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           <>
             
           <NavItem
-          fontSize={"lg"}
+          fontSize={"md"}
+          pl='4'
           key={link.name}
           link={link}
           showDateInput={showDateInput}
@@ -132,24 +133,25 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           {link.name}
         </NavItem>
         {showPlaceInput && link.name === 'PLACE' && (
-            <Box p="4" mx="4">
+            <Box pl="4"  mx="4">
               <Input borderColor='tomato' 
               type="text" color='tomato' 
               placeholder='' 
-              _placeholder={{ opacity: 0.4, color: 'inherit' }} 
+              fontSize='sm'
+              _placeholder={{ opacity: 0.1, color: 'inherit' }} 
               value={place} 
               onChange={handlePlaceSearch} 
               onKeyDown={(e) => {if(e.key === 'Enter') onClose()}} />
             </Box>
           )}
           {showSearchInput && link.name === 'SEARCH' && (
-            <Box p="4" mx="4">
+            <Box pl="4" mx="4" mt='2'>
               <Input
                 borderColor='tomato'
                 type="text"
                 color='tomato'
                 placeholder='search'
-                _placeholder={{ opacity: 0.4, color: 'inherit' }}
+                _placeholder={{ opacity: 0.1, color: 'inherit' }}
                 value={search}
                 onChange={handleSearchChange}
                 onKeyDown={(e) => { if (e.key === 'Enter') onClose(); }}
@@ -160,7 +162,7 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
 
       ))} 
           {showDateInput && (<>
-            <Box p="4" mx="4">
+            <Box pl="4" mx="4">
               <Input borderColor='tomato' 
               type="date" 
               value={selectedDate} 
@@ -177,10 +179,10 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
     const NavItem = ({ link, showDateInput, setShowDateInput,onClose,showPlaceInput, setShowPlaceInput, showSearchInput, setShowSearchInput }) => {
   if (link.type === 'date') {
     return (
-      <Box mt="4">
+      <Box mt="2">
         <Flex
           align="center"
-          p="4"
+          pl="6"
           mx="4"
           borderRadius="none"
           role="group"
@@ -188,16 +190,16 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           onClick={() => {setShowDateInput(!showDateInput) } }
           _hover={{ color: 'red' }}
         >
-          <Text fontSize="xl">{link.name}</Text>
+          <Text pt='4' fontSize="md">{link.name}</Text>
         </Flex>
       </Box>
     );
   } else if(link.type === 'place') {
     return (
-      <Box mt="4">
+      <Box mt="2">
         <Flex
           align="center"
-          p="4"
+          pl="6"
           mx="4"
           borderRadius="none"
           role="group"
@@ -207,17 +209,17 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
-            <Text fontSize="lg">{link.name}</Text>
+            <Text pt='4' fontSize="md">{link.name}</Text>
           </Link>
         </Flex>
       </Box>
     );
   } else if (link.type === 'input') {
     return (
-      <Box mt="4">
+      <Box mt="">
         <Flex
           align="center"
-          p="4"
+          pl="6"
           mx="4"
           borderRadius="none"
           role="group"
@@ -225,7 +227,7 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           onClick={() => { setShowSearchInput(!showSearchInput); }}
           _hover={{ color: 'red' }}
         >
-          <Text fontSize="lg">{link.name}</Text>
+          <Text fontSize="md">{link.name}</Text>
         </Flex>
       </Box>
     );
@@ -233,10 +235,10 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
   else {
     return (
       
-      <Box mt="4">
+      <Box mt="2">
         <Flex
           align="center"
-          p="4"
+          pl="6"
           mx="4"
           borderRadius="none"
           role="group"
@@ -246,7 +248,7 @@ const {filterEvents, events, filterSearch}= useContext(EventsContext)
           
         >
           <Link to={link.to} style={{ textDecoration: 'none' }}>
-            <Text fontSize="lg">{link.name}</Text>
+            <Text pt='4' fontSize="md">{link.name}</Text>
           </Link>
         </Flex>
       </Box>
