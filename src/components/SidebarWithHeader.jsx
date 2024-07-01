@@ -24,7 +24,7 @@ import {
   FiChevronDown,
 
 } from 'react-icons/fi'
-import{Routes, Route, Link, useNavigate} from 'react-router-dom'
+import{Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { EventsContext } from '../context/Events.context'
 
@@ -378,7 +378,7 @@ const SidebarWithHeader = () => {
           <Route path='/events/:eventId/editproject' element={<EditProject />} ></Route>
           <Route path='*' element={<Teapot  />} ></Route>
           {/* <Route path='/events/*' element={<Teapot  />} ></Route> */}
-
+         
           </Routes>
 
         {/* Content */}
