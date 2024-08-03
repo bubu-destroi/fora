@@ -27,12 +27,6 @@ import {
 import{Routes, Route, Link, useNavigate } from 'react-router-dom'
 import { useState, useContext, useEffect } from 'react'
 import { EventsContext } from '../context/Events.context'
-
-
-
-
-
-
 import foraLogo from '../assets/FORA LOGO.png'
 import perfilLogo from '../assets/perfil logo.png'
 import Projects from './Projects'
@@ -47,7 +41,7 @@ const LinkItems =  [
 
 
   
-  { name: 'SEARCH', type: 'input' },
+  { name: 'SEARCH' , type: 'input' },
   { name: 'TODAY', to: '/events/today' },
   { name: 'ALL EVENTS', to: '/events/all' },
   { name: 'PAST EVENTS' , to: '/events/past'}, 

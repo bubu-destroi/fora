@@ -124,7 +124,7 @@ const {getEvents} = useContext(EventsContext)
               <br />
               <Input color='tomato' placeholder='when' opacity=' 0.4' width={'100%'} size='md' type='date' value={date} onChange={handleDate} />
               <br />
-              <LoadScript googleMapsApiKey='AIzaSyDSbSrNsYCqg7GV5daI7wa7h3b1eu7zHPk' libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
+              <LoadScript googleMapsApiKey={`${import.meta.env.VITE_MAPS_KEY}`} libraries={libraries} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
                 <Autocomplete onLoad={(ref) => (autocompleteRef.current = ref)} onPlaceChanged={onPlaceChanged} fontFamily='"Kode Mono", monospace' fontWeight="bold 700">
                   <Input
                     type='text'
