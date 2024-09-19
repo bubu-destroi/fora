@@ -76,8 +76,7 @@ const EditProject = () => {
                     }
 
               const handleDeleteEvent = async () => {                    //  <== ADD
-                // Make a DELETE request to delete the project
-
+            
 
                 if(keyAut === secret_key){
 
